@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const menu = <>
-        <li className='hover:text-blue-400'><Link to='/home'>Home</Link></li>
-        <li className='hover:text-blue-400'><Link to='/dashboard'>Dashboard</Link></li>
-        <li className='hover:text-blue-400'><Link to='/blog'>Blog</Link></li>
-        <li className='hover:text-blue-400'><Link to='/login'>Login</Link></li>
-        <li className='hover:text-blue-400'><Link to=''></Link></li>
+        <li className='hover:text-purple-500 hover:bordered'><Link to='/home'>Home</Link></li>
+        <li className='hover:text-purple-500 hover:bordered'><Link to='/dashboard'>Dashboard</Link></li>
+        <li className='hover:text-purple-500 hover:bordered'><Link to='/blog'>Blog</Link></li>
+        <li className='hover:text-purple-500 hover:bordered'><Link to='/login'>Login</Link></li>
+        <li className='hover:text-purple-500 hover:bordered'><Link to=''></Link></li>
     </>
 
     return (
@@ -41,8 +41,8 @@ const Navbar = () => {
                             </div>
                         </label>
                         <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                           <Link className='btn btn-xs btn-info' to=''>Profile</Link>
-                           <button className="btn btn-xs btn-info mt-4">Sign Out</button>
+                           <Link className='btn btn-xs btn-info mt-2' to=''>Profile</Link>
+                           <button className="btn btn-xs btn-info mt-4 mb-2">Sign Out</button>
                         </ul>
                     </div>
                 </div>

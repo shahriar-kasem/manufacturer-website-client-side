@@ -7,11 +7,15 @@ import SignUp from './components/shared/SignUp/SignUp';
 import NotFound from './components/shared/NotFound/NotFound';
 import Blog from './components/pages/Blog/Blog';
 import Navbar from './components/shared/Navbar/Navbar';
+import Footer from './components/shared/Footer/Footer';
 
 function App() {
   return (
-    <section className='lg:w-10/12 mg:w-11/12 mx-auto'>
+    <section>
+      <div className='lg:mx-5'>
       <Navbar></Navbar>
+      </div>
+      <div className='lg:w-10/12 mg:w-11/12 mx-auto'>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
@@ -21,6 +25,8 @@ function App() {
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
+      </div>
+      <Footer></Footer>
     </section>
   );
 }
