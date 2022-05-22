@@ -61,7 +61,9 @@ const Navbar = () => {
                             </div>
                         </label>
                         <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <li className='hover:text-purple-500 hover:bordered'><Link to=''>Profile</Link></li>
+                            {
+                                user && <li className='hover:text-purple-500 hover:bordered'><Link to=''>Profile</Link></li>
+                            }
                             {
                                 !user && <>
                                     <li className='hover:text-purple-500 hover:bordered'><Link to='/login'>Login</Link></li>

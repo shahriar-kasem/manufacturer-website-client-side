@@ -9,8 +9,10 @@ import Blog from './components/pages/Blog/Blog';
 import Navbar from './components/shared/Navbar/Navbar';
 import Reviews from './components/pages/Reviews/Reviews';
 import AddReview from './components/pages/AddReview/AddReview';
+import MyProfile from './components/pages/MyProfile/MyProfile';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import RequireAuth from './components/shared/RequireAuth/RequireAuth';
 
 function App() {
   return (
@@ -22,7 +24,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
-        <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
+        <Route path='/dashboard' element={
+          <RequireAuth>
+            <Dashboard></Dashboard>
+          </RequireAuth>
+        }>
+          <Route index element={<MyProfile></MyProfile>}></Route>
+        </Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path='/reviews' element={<Reviews></Reviews>}></Route>
         <Route path='/addReview' element={<AddReview></AddReview>}></Route>

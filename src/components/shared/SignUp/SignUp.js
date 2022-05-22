@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,6 @@ import auth from '../../../firebase.init';
 import Loading from '../Loading/Loading';
 
 const SignUp = () => {
-    const [errorMessage, setErrorMessage] = useState('');
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [
         createUserWithEmailAndPassword,
@@ -23,13 +22,13 @@ const SignUp = () => {
         const password = data.password;
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({
-                displayName
-            });
-        event.target.reset();
+            displayName
+        });
+        console.log(data)
     };
 
     if (error) {
-        setErrorMessage(error?.message)
+        
     }
 
     if (loading || gLoading) {
@@ -38,8 +37,8 @@ const SignUp = () => {
 
     return (
         <section>
-            <div class="card max-w-md bg-base-100 shadow-xl mx-auto">
-                <div class="">
+            <div className="card max-w-md bg-base-100 shadow-xl mx-auto">
+                <div className="">
                     <h1 className='text-xl font-semibold text-blue-500 text-center'>Please SignUp</h1>
                     <form className='flex flex-col items-center' onSubmit={handleSubmit(signUp)}>
                         <div className="form-control w-full max-w-xs">
@@ -110,7 +109,7 @@ const SignUp = () => {
                             </label>
                         </div>
                         {
-                            errorMessage && <p className='text-red-500 py-1'><small>{errorMessage}</small></p>
+                            error && <p className='text-red-500 my-1'><small>{error.message}</small></p>
                         }
                         <input className='btn btn-outline w-full md:w-10/12 max-w-xs' type="submit" value='Sign Up' />
                     </form>
@@ -118,11 +117,11 @@ const SignUp = () => {
                         <p className='text-center'><small>Already have an account? <Link className='text-blue-500' to='/login'>Please login</Link></small></p>
                     </div>
                 </div>
-                <div class="divider">Or</div>
+                <div className="divider">Or</div>
+                {
+                    gError && <p className='text-red-500 py-1 text-center'><small>{gError.message}</small></p>
+                }
                 <div className='flex justify-center'>
-                    {
-                        gError && <p className='text-red-500 py-1'><small>{gError.message}</small></p>
-                    }
                     <button onClick={() => signInWithGoogle()} className='btn btn-outline w-full md:w-10/12 max-w-xs'>Continue with Google</button>
                 </div>
             </div>
