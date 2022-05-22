@@ -32,7 +32,7 @@ const SignUp = () => {
         setErrorMessage(error?.message)
     }
 
-    if (loading) {
+    if (loading || gLoading) {
         return <Loading></Loading>
     }
 
@@ -110,7 +110,7 @@ const SignUp = () => {
                             </label>
                         </div>
                         {
-                            errorMessage && <p className='text-red-500 py-1'><small>{error.message}</small></p>
+                            errorMessage && <p className='text-red-500 py-1'><small>{errorMessage}</small></p>
                         }
                         <input className='btn btn-outline w-full md:w-10/12 max-w-xs' type="submit" value='Sign Up' />
                     </form>
@@ -120,6 +120,9 @@ const SignUp = () => {
                 </div>
                 <div class="divider">Or</div>
                 <div className='flex justify-center'>
+                    {
+                        gError && <p className='text-red-500 py-1'><small>{gError.message}</small></p>
+                    }
                     <button onClick={() => signInWithGoogle()} className='btn btn-outline w-full md:w-10/12 max-w-xs'>Continue with Google</button>
                 </div>
             </div>

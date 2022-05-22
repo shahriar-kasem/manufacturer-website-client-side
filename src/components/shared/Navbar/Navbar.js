@@ -5,11 +5,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
-    const [user, loading] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
     const logout = () => {
         signOut(auth);
-    }
+    } 
 
     const menu = <>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/home'>Home</Link></li>
@@ -50,7 +50,7 @@ const Navbar = () => {
                         <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 {
-                                    !user && <img src='https://i.ibb.co/D4jRPc7/png-round-blue-contact-user-profile-icon-11639786938sxvzj5ogua.png' alt='profile-icon' />
+                                    !user && <img src='https://i.ibb.co/x8P2btX/logged-in-icon-5.png' alt='profile-icon' />
                                 }
                                 {
                                     !user?.photoURL ?

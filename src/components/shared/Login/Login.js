@@ -1,22 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import auth from '../../../firebase.init';
+import Loading from '../Loading/Loading';
 
 const Login = () => {
+    const [errorMessage, setErrorMessage] = useState('');
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useSignInWithEmailAndPassword(auth);
+
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = (data, event) => {
+    const login = (data, event) => {
+        const email = data.email;
+        const password = data.email;
+        signInWithEmailAndPassword(email, password);
         console.log(data);
         event.target.reset();
-        toast.success('Login successful!')
     };
+
+    if(loading || gLoading){
+        return <Loading></Loading>;
+    }
 
     return (
         <section className='mt-5 lg:mt-10'>
             <div class="card max-w-md bg-base-100 shadow-xl mx-auto">
                 <div class="">
                     <h1 className='text-xl font-semibold text-blue-500 text-center'>Please login</h1>
-                    <form className='flex flex-col items-center' onSubmit={handleSubmit(onSubmit)}>
+                    <form className='flex flex-col items-center' onSubmit={handleSubmit(login)}>
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -65,7 +83,9 @@ const Login = () => {
                                 {errors.password?.type === 'minLength' && <p className='text-red-500'><small>{errors.password.message}</small></p>}
                             </label>                            
                         </div>
-                                
+                        {
+                            error && <p className='text-red-500 py-1'><small>{error.message}</small></p>
+                        }
                         <input className='btn btn-outline w-full md:w-10/12 max-w-xs' type="submit" value='Login' />
                     </form>
                     <div>
@@ -74,8 +94,11 @@ const Login = () => {
                     </div>
                 </div>
                 <div class="divider">Or</div>
+                {
+                        gError && <p className='text-red-500 py-1 text-center'><small>{gError.message}</small></p>
+                    }
                 <div className='flex justify-center'>
-                    <button className='btn btn-outline w-full md:w-10/12 max-w-xs'>Continue with Google</button>
+                    <button onClick={() => signInWithGoogle()} className='btn btn-outline w-full md:w-10/12 max-w-xs'>Continue with Google</button>
                 </div>
             </div>
         </section>
