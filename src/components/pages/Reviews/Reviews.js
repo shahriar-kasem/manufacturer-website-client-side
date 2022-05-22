@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useReviews from '../../../hooks/useReviews';
@@ -6,9 +6,15 @@ import Review from '../Review/Review';
 
 const Reviews = () => {
     const [reviews, setReviews] = useReviews();
+    const [star, setStar] = useState(5);
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = (data,event) => {
-        console.log(data);
+    const onSubmit = (data, event) => {
+
+        const name = data.name;
+        const description = data.description;
+        const ratings = star;
+        const review = {name, description, ratings};
+        console.log(review);
         event.target.reset();
         toast.success('Review added successfully')
     };
@@ -29,14 +35,14 @@ const Reviews = () => {
                 </div>
             </div>
             <div className='flex justify-center'>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-3'>
-                {
-                    reviews.map((review, index) => <Review
-                        key={index}
-                        review={review}
-                    ></Review>)
-                }
-            </div>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-3'>
+                    {
+                        reviews.map((review, index) => <Review
+                            key={index}
+                            review={review}
+                        ></Review>)
+                    }
+                </div>
             </div>
             <div id='newReview' className='mt-10 mb-5'>
                 <h3 className='text-center text-xl text-blue-500'><i>Add a new review</i></h3>
@@ -79,7 +85,7 @@ const Reviews = () => {
                             {errors.description?.type === 'required' && <p className='text-red-500'><small>{errors.description.message}</small></p>}
                         </label>
                     </div>
-                    <div className="form-control w-full max-w-xs">
+                    {/* <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Ratings</span>
                         </label>
@@ -101,7 +107,21 @@ const Reviews = () => {
                             {errors.ratings?.type === 'min' && <p className='text-red-500'><small>Minimum ratings can be 1</small></p>}
                             {errors.ratings?.type === 'max' && <p className='text-red-500'><small>Maximum ratings can be 5</small></p>}
                         </label>
+                    </div> */}
+                    {/* alternative */}
+                    <div className='form-control w-full max-w-xs'>
+                        <label className="label">
+                            <span className="label-text">Ratings</span>
+                        </label>
+                        <div class="rating input input-bordered w-full max-w-xs flex items-center mb-5">
+                            <input onChange={() => setStar(1)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                            <input onChange={() => setStar(2)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                            <input onChange={() => setStar(3)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                            <input onChange={() => setStar(4)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                            <input onChange={() => setStar(5)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                        </div>
                     </div>
+
 
                     <input className='btn btn-outline' type="submit" value='Add review' />
                 </form>
