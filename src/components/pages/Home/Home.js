@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import auth from '../../../firebase.init';
 import useReviews from '../../../hooks/useReviews';
 import Footer from '../../shared/Footer/Footer';
 import Banner from '../Banner/Banner';
@@ -8,6 +10,7 @@ import Review from '../Review/Review';
 import Tools from '../Tools/Tools';
 
 const Home = () => {
+    const [user] = useAuthState(auth);
     const [reviews] = useReviews();
     const navigate = useNavigate();
     const homeReview = reviews.length - 3;
@@ -42,9 +45,9 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="flex flex-col w-full lg:flex-row my-3 md:my-5">
-                    <div className="grid flex-grow card rounded-box place-items-center"><button onClick={() => navigate('/reviews/#newReview')} className="btn w-full">Add Review</button></div>
+                    <div className="grid flex-grow card rounded-box place-items-center"><button disabled={!user} onClick={() => navigate('/addReview')} className="btn w-full">Add Review</button></div>
                     <div className="divider lg:divider-horizontal">OR</div>
-                    <div className="grid flex-grow card rounded-box place-items-center"><button onClick={()=> navigate('/reviews')} className="btn w-full">See all reviews</button></div>
+                    <div className="grid flex-grow card rounded-box place-items-center"><button onClick={() => navigate('/reviews')} className="btn w-full">See all reviews</button></div>
                 </div>
             </section>
             <Footer></Footer>

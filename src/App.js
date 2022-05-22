@@ -8,6 +8,7 @@ import NotFound from './components/shared/NotFound/NotFound';
 import Blog from './components/pages/Blog/Blog';
 import Navbar from './components/shared/Navbar/Navbar';
 import Reviews from './components/pages/Reviews/Reviews';
+import AddReview from './components/pages/AddReview/AddReview';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path='/reviews' element={<Reviews></Reviews>}></Route>
+        <Route path='/addReview' element={<AddReview></AddReview>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
