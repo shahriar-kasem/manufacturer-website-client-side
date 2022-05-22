@@ -6,6 +6,7 @@ const Navbar = () => {
         <li className='hover:text-purple-500 hover:bordered'><Link to='/home'>Home</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/dashboard'>Dashboard</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/blog'>Blog</Link></li>
+        <li className='hover:text-purple-500 hover:bordered'><Link to='/reviews'>Reviews</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/login'>Login</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to=''></Link></li>
     </>
@@ -41,8 +42,10 @@ const Navbar = () => {
                             </div>
                         </label>
                         <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                           <Link className='btn btn-xs btn-info mt-2' to=''>Profile</Link>
-                           <button className="btn btn-xs btn-info mt-4 mb-2">Sign Out</button>
+                           <li className='hover:text-purple-500 hover:bordered'><Link to=''>Profile</Link></li>
+                           <li className='hover:text-purple-500 hover:bordered'><Link to=''>Login</Link></li>
+                           <li className='hover:text-purple-500 hover:bordered'><Link to=''>SignUp</Link></li>
+                           <li className='hover:text-purple-500 hover:bordered'><button>Logout</button></li>
                         </ul>
                     </div>
                 </div>

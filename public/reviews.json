@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Leanne Graham",
+        "description": "Product price is also reasonable & very responsive, quick delivery.",
+        "ratings": 4.5,
+        "img": "https://i.ibb.co/0j8TBtC/leanne-graham.jpg"
+    },
+    {
+        "name": "Ervin Howell",
+        "description": "Great response. Quick and safely delivered.",
+        "ratings": 5,
+        "img": "https://i.ibb.co/0mj91wy/Ervin-Howell.jpg"
+    },
+    {
+        "name": "Emma Watson",
+        "description": "The service were great. The quality of products are good and price is also reasonable. Recommend!",
+        "ratings": 5,
+        "img": "https://i.ibb.co/5c8RBj4/British-actress-Emma-Watson-2017.webp"
+    },
+    {
+        "name": "Patricia Lebsack",
+        "description": "Their customer service is wonderful and they have tried their best to resolve previous issues with delivery. Much appreciated customer service.",
+        "ratings": 4.5,
+        "img": "https://i.ibb.co/RHfdSqN/Patricia-Lebsack.jpg"
+    },
+    {
+        "name": "Chelsey Dietrich",
+        "description": "Best customer service and friendly behavior.😍😍fully satisfied 😊",
+        "ratings": 5,
+        "img": "https://i.ibb.co/nC3gdxv/Chelsey-Dietrich.jpg"
+    },
+    {
+        "name": "Nicholas Runolfsdottir",
+        "description": "The tools that I bought are pretty cool. And the best part is they delivered my tools very fast and safely. 🙂",
+        "ratings": 4.5,
+        "img": "https://i.ibb.co/BBxQyzS/Nicholas-Runolfsdottir.jpg"
+    },
+    {
+        "name": "Glenna Reichert",
+        "description": "The tools are intact and get it in few days! 😁 fully satisfied!!",
+        "ratings": 5,
+        "img": "https://i.ibb.co/ftmkvMd/Glenna-Reichert.jpg"
+    }
+]
