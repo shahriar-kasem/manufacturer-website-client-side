@@ -10,7 +10,7 @@ import Tools from '../Tools/Tools';
 const Home = () => {
     const [reviews] = useReviews();
     const navigate = useNavigate();
-    const homeReview = reviews.length - 4;
+    const homeReview = reviews.length - 3;
 
     return (
         <section>
@@ -34,7 +34,7 @@ const Home = () => {
                 <div className='flex justify-center'>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-3'>
                         {
-                            reviews.slice(reviews.length - homeReview).map((review, index) => <Review
+                            reviews.slice(homeReview, reviews.length).map((review, index) => <Review
                                 key={index}
                                 review={review}
                             ></Review>)
