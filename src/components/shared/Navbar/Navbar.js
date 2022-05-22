@@ -1,14 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import auth from '../../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
+    const [user, loading] = useAuthState(auth);
+    console.log(user)
+    const logout = () => {
+        signOut(auth);
+    }
+
     const menu = <>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/home'>Home</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/dashboard'>Dashboard</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/blog'>Blog</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/reviews'>Reviews</Link></li>
-        <li className='hover:text-purple-500 hover:bordered'><Link to='/login'>Login</Link></li>
-        <li className='hover:text-purple-500 hover:bordered'><Link to=''></Link></li>
+        <li className='hover:text-purple-500 hover:bordered'><Link to='/myPortfolio'>My Portfolio</Link></li>
+        {
+            !user && <li className='hover:text-purple-500 hover:bordered'><Link to='/login'>Login</Link></li>
+        }
     </>
 
     return (
@@ -38,14 +49,28 @@ const Navbar = () => {
                     <div className="dropdown dropdown-end">
                         <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img src="https://api.lorem.space/image/face?hash=33791" />
+                                {
+                                    !user && <img src='https://i.ibb.co/D4jRPc7/png-round-blue-contact-user-profile-icon-11639786938sxvzj5ogua.png' alt='profile-icon' />
+                                }
+                                {
+                                    !user?.photoURL ?
+                                    <img src='https://i.ibb.co/D4jRPc7/png-round-blue-contact-user-profile-icon-11639786938sxvzj5ogua.png' alt='profile-icon' />
+                                    :
+                                    <img src={user.photoURL} alt='profile-icon' />
+                                }
                             </div>
                         </label>
                         <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                           <li className='hover:text-purple-500 hover:bordered'><Link to=''>Profile</Link></li>
-                           <li className='hover:text-purple-500 hover:bordered'><Link to=''>Login</Link></li>
-                           <li className='hover:text-purple-500 hover:bordered'><Link to=''>SignUp</Link></li>
-                           <li className='hover:text-purple-500 hover:bordered'><button>Logout</button></li>
+                            <li className='hover:text-purple-500 hover:bordered'><Link to=''>Profile</Link></li>
+                            {
+                                !user && <>
+                                    <li className='hover:text-purple-500 hover:bordered'><Link to='/login'>Login</Link></li>
+                                    <li className='hover:text-purple-500 hover:bordered'><Link to='/signup'>SignUp</Link></li>
+                                </>
+                            }
+                            {
+                                user && <li className='hover:text-purple-500 hover:bordered'><button onClick={logout}>Logout</button></li>
+                            }
                         </ul>
                     </div>
                 </div>

@@ -41,10 +41,10 @@ const Home = () => {
                         }
                     </div>
                 </div>
-                <div class="flex flex-col w-full lg:flex-row my-3 md:my-5">
-                    <div class="grid flex-grow card rounded-box place-items-center"><button onClick={() => navigate('/reviews/#newReview')} class="btn w-full">Add Review</button></div>
-                    <div class="divider lg:divider-horizontal">OR</div>
-                    <div class="grid flex-grow card rounded-box place-items-center"><button onClick={()=> navigate('/reviews')} class="btn w-full">See all reviews</button></div>
+                <div className="flex flex-col w-full lg:flex-row my-3 md:my-5">
+                    <div className="grid flex-grow card rounded-box place-items-center"><button onClick={() => navigate('/reviews/#newReview')} className="btn w-full">Add Review</button></div>
+                    <div className="divider lg:divider-horizontal">OR</div>
+                    <div className="grid flex-grow card rounded-box place-items-center"><button onClick={()=> navigate('/reviews')} className="btn w-full">See all reviews</button></div>
                 </div>
             </section>
             <Footer></Footer>
