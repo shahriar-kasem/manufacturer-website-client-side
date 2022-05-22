@@ -1,28 +1,38 @@
 import React, { useState } from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../Loading/Loading';
 
 const SignUp = () => {
+    const [errorMessage, setErrorMessage] = useState('');
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile] = useUpdateProfile(auth);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const signUp = (data, event) => {
+    const signUp = async (data, event) => {
+        const displayName = data.name;
         const email = data.email;
         const password = data.password;
-        createUserWithEmailAndPassword(email, password);
-        console.log(data);
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({
+                displayName
+            });
         event.target.reset();
     };
 
-    if(loading){
+    if (error) {
+        setErrorMessage(error?.message)
+    }
+
+    if (loading) {
         return <Loading></Loading>
     }
 
@@ -99,9 +109,9 @@ const SignUp = () => {
                                 {errors.password?.type === 'minLength' && <p className='text-red-500'><small>{errors.password.message}</small></p>}
                             </label>
                         </div>
-                                {
-                                    error && <p className='text-red-500 py-1'><small>{error.message}</small></p>
-                                }
+                        {
+                            errorMessage && <p className='text-red-500 py-1'><small>{error.message}</small></p>
+                        }
                         <input className='btn btn-outline w-full md:w-10/12 max-w-xs' type="submit" value='Sign Up' />
                     </form>
                     <div>
@@ -110,7 +120,7 @@ const SignUp = () => {
                 </div>
                 <div class="divider">Or</div>
                 <div className='flex justify-center'>
-                    <button className='btn btn-outline w-full md:w-10/12 max-w-xs'>Continue with Google</button>
+                    <button onClick={() => signInWithGoogle()} className='btn btn-outline w-full md:w-10/12 max-w-xs'>Continue with Google</button>
                 </div>
             </div>
         </section>
