@@ -9,6 +9,7 @@ import useReviews from '../../../hooks/useReviews';
 
 const AddReview = () => {
     const [user] = useAuthState(auth);
+    const [userName, setUserName] = useState(user?.displayName);
     const navigate = useNavigate();
     const [reviews, setReviews] = useReviews();
     const [star, setStar] = useState(5);
@@ -24,29 +25,32 @@ const AddReview = () => {
         const email = user.email;
         const review = { name, description, ratings, img, email };
         const newReviews = [...reviews, review];
-        setReviews(newReviews)
         axios({
             method: 'POST',
             url: 'http://localhost:5000/review',
             data: review,
         });
+        setReviews(newReviews)
         event.target.reset();
         navigate('/reviews')
         toast.success('Review added successfully')
     };
+    const handleName = (event) => {
+        const newName = event.target.value;
+        setUserName(newName);
+    }
 
     return (
         <section>
             <div id='newReview' className='mt-10 mb-5'>
                 <h3 className='text-center text-xl text-blue-500 font-semibold'><i>Add a new review</i></h3>
                 <form className='flex flex-col items-center' onSubmit={handleSubmit(addReview)}>
-                    <div className="form-control w-full max-w-xs">
+                    <div onChange={handleName} className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
                         <input
-                            readOnly
-                            value={user.displayName}
+                            value={userName || ''}
                             type="text"
                             placeholder="Your name"
                             className="input input-bordered w-full max-w-xs"

@@ -16,6 +16,7 @@ const Navbar = () => {
         {
             user && <li className='hover:text-purple-500 hover:bordered'><Link to='/dashboard'>Dashboard</Link></li>
         }
+        <li className='hover:text-purple-500 hover:bordered'><Link to='/tools'>Tools</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/blog'>Blog</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/reviews'>Reviews</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/myPortfolio'>My Portfolio</Link></li>
@@ -38,7 +39,7 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-xl">Manufacturer</Link>
+                    <Link to='/' className="btn btn-ghost normal-case text-xl">Spadex Tools</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">

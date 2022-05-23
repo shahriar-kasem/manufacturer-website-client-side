@@ -11,7 +11,7 @@ const Reviews = () => {
     const [reviews] = useReviews();
 
     return (
-        <section className='md:mt-5 lg:w-10/12 mg:w-11/12 mx-auto mb-5'>
+        <section className='md:mt-5 lg:w-11/12 md:w-11/12 mx-auto mb-5'>
             <div>
                 <div className='flex justify-between items-center mx-1 md:mx-5'>
                     <div className='w-36'>

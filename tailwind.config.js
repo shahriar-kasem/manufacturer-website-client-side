@@ -3,7 +3,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'spring-background': "url('/src/images/background/Spring.png')",
+        'banner-background': "url('/src/images/background/banner-bg.jpg')"
+      }
+    },
   },
   daisyui: {
     themes: [
