@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../Loading/Loading';
 
@@ -15,6 +15,11 @@ const SignUp = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile] = useUpdateProfile(auth);
 
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    let from = location.state?.from?.pathname || "/";
+
     const { register, formState: { errors }, handleSubmit } = useForm();
     const signUp = async (data, event) => {
         const displayName = data.name;
@@ -24,12 +29,13 @@ const SignUp = () => {
         await updateProfile({
             displayName
         });
-        console.log(data)
     };
 
-    if (error) {
-        
-    }
+    useEffect(() => {
+        if (user || gUser) {
+            navigate(from, { replace: true });
+        }
+    }, [user, gUser, from, navigate])
 
     if (loading || gLoading) {
         return <Loading></Loading>
@@ -121,7 +127,7 @@ const SignUp = () => {
                 {
                     gError && <p className='text-red-500 py-1 text-center'><small>{gError.message}</small></p>
                 }
-                <div className='flex justify-center'>
+                <div className='flex justify-center mb-5'>
                     <button onClick={() => signInWithGoogle()} className='btn btn-outline w-full md:w-10/12 max-w-xs'>Continue with Google</button>
                 </div>
             </div>

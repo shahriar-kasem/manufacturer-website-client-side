@@ -17,7 +17,7 @@ import RequireAuth from './components/shared/RequireAuth/RequireAuth';
 function App() {
   return (
     <section>
-      <div className='lg:mx-10'>
+      <div className='lg:mx-20'>
       <Navbar></Navbar>
       </div>
       <div>
