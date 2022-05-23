@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import useReviews from '../../../hooks/useReviews';
@@ -21,7 +21,8 @@ const AddReview = () => {
         const description = data.description;
         const ratings = star;
         const img = userImg;
-        const review = { name, description, ratings, img };
+        const email = user.email;
+        const review = { name, description, ratings, img, email };
         const newReviews = [...reviews, review];
         setReviews(newReviews)
         axios({
@@ -37,54 +38,50 @@ const AddReview = () => {
     return (
         <section>
             <div id='newReview' className='mt-10 mb-5'>
-                {
-                    !user ? <h3 className='text-center text-lg font-semibold'>Wanna give review? <Link to='/login' className='text-blue-500'>Please login</Link></h3>
-                        :
-                        <>
-                            <h3 className='text-center text-xl text-blue-500'><i>Add a new review</i></h3>
-                            <form className='flex flex-col items-center' onSubmit={handleSubmit(addReview)}>
-                                <div className="form-control w-full max-w-xs">
-                                    <label className="label">
-                                        <span className="label-text">Name</span>
-                                    </label>
-                                    <input
-                                        readOnly
-                                        value={user.displayName}
-                                        type="text"
-                                        placeholder="Your name"
-                                        className="input input-bordered w-full max-w-xs"
-                                        {...register("name", {
-                                            required: {
-                                                value: true,
-                                                message: 'Name is required'
-                                            }
-                                        })}
-                                    />
-                                    <label className="label">
-                                        {errors.name?.type === 'required' && <p className='text-red-500'><small>{errors.name.message}</small></p>}
-                                    </label>
-                                </div>
-                                <div className="form-control w-full max-w-xs">
-                                    <label className="label">
-                                        <span className="label-text">Review</span>
-                                    </label>
-                                    <textarea
-                                        rows={5}
-                                        type="text"
-                                        placeholder="Description"
-                                        className="textarea input-bordered w-full max-w-xs"
-                                        {...register("description", {
-                                            required: {
-                                                value: true,
-                                                message: 'Description is required'
-                                            }
-                                        })}
-                                    />
-                                    <label className="label">
-                                        {errors.description?.type === 'required' && <p className='text-red-500'><small>{errors.description.message}</small></p>}
-                                    </label>
-                                </div>
-                                {/* <div className="form-control w-full max-w-xs">
+                <h3 className='text-center text-xl text-blue-500 font-semibold'><i>Add a new review</i></h3>
+                <form className='flex flex-col items-center' onSubmit={handleSubmit(addReview)}>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Name</span>
+                        </label>
+                        <input
+                            readOnly
+                            value={user.displayName}
+                            type="text"
+                            placeholder="Your name"
+                            className="input input-bordered w-full max-w-xs"
+                            {...register("name", {
+                                required: {
+                                    value: true,
+                                    message: 'Name is required'
+                                }
+                            })}
+                        />
+                        <label className="label">
+                            {errors.name?.type === 'required' && <p className='text-red-500'><small>{errors.name.message}</small></p>}
+                        </label>
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Review</span>
+                        </label>
+                        <textarea
+                            rows={5}
+                            type="text"
+                            placeholder="Description"
+                            className="textarea input-bordered w-full max-w-xs"
+                            {...register("description", {
+                                required: {
+                                    value: true,
+                                    message: 'Description is required'
+                                }
+                            })}
+                        />
+                        <label className="label">
+                            {errors.description?.type === 'required' && <p className='text-red-500'><small>{errors.description.message}</small></p>}
+                        </label>
+                    </div>
+                    {/* <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Ratings</span>
                         </label>
@@ -107,24 +104,22 @@ const AddReview = () => {
                             {errors.ratings?.type === 'max' && <p className='text-red-500'><small>Maximum ratings can be 5</small></p>}
                         </label>
                     </div> */}
-                                {/* alternative */}
-                                <div className='form-control w-full max-w-xs'>
-                                    <label className="label">
-                                        <span className="label-text">Ratings</span>
-                                    </label>
-                                    <div className="rating input input-bordered w-full max-w-xs flex items-center mb-5">
-                                        <input onChange={() => setStar(1)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                        <input onChange={() => setStar(2)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                        <input onChange={() => setStar(3)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                        <input onChange={() => setStar(4)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                        <input onChange={() => setStar(5)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                    </div>
-                                </div>
+                    {/* alternative */}
+                    <div className='form-control w-full max-w-xs'>
+                        <label className="label">
+                            <span className="label-text">Ratings</span>
+                        </label>
+                        <div className="rating input input-bordered w-full max-w-xs flex items-center mb-5">
+                            <input onChange={() => setStar(1)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                            <input onChange={() => setStar(2)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                            <input onChange={() => setStar(3)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                            <input onChange={() => setStar(4)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                            <input onChange={() => setStar(5)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                        </div>
+                    </div>
 
-                                <input className='btn btn-outline' type="submit" value='Add review' />
-                            </form>
-                        </>
-                }
+                    <input className='btn btn-outline' type="submit" value='Add review' />
+                </form>
             </div>
         </section>
     );
