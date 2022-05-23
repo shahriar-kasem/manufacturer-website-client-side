@@ -16,7 +16,6 @@ const Home = () => {
     const [reviews] = useReviews();
     const navigate = useNavigate();
     const homeReview = reviews.length - 3;
-    const homeTool = products.length - 3;
 
     return (
         <section>
@@ -26,14 +25,14 @@ const Home = () => {
                     <h1 className='text-green-500 text-4xl font-bold text-center'><i>Tools</i></h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-3 mx-auto mt-5'>
                         {
-                            products.slice(homeTool, products.length).map(product => <Tool
+                            products.slice(1,4).map(product => <Tool
                                 key={product._id}
                                 product={product}
                             ></Tool>)
                         }
                     </div>
                     <div className="flex flex-col w-full lg:flex-row my-3 md:my-5">
-                    <div className="grid flex-grow card rounded-box place-items-center"><button onClick={() => navigate('/reviews')} className="btn w-full">See all Tools</button></div>
+                    <div className="grid flex-grow card rounded-box place-items-center"><button onClick={() => navigate('/tools')} className="btn w-full">See all Tools</button></div>
                 </div>
                 </div>
             </section>

@@ -19,6 +19,7 @@ import AddProduct from './components/pages/admin/AddProduct/AddProduct';
 import MakeAdmin from './components/pages/admin/MakeAdmin/MakeAdmin';
 import ManageProducts from './components/pages/admin/ManageProducts/ManageProducts';
 import Tools from './components/pages/Tools/Tools';
+import Purchase from './components/pages/Purchase/Purchase';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path='manageProducts' element={<ManageProducts></ManageProducts>}></Route>
         </Route>
         <Route path='/tools' element={<Tools></Tools>}></Route>
+        <Route path='/purchase/:id' element={<Purchase></Purchase>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path='/reviews' element={<Reviews></Reviews>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>

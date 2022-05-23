@@ -1,6 +1,6 @@
 import React from 'react';
 import Tool from '../Tool/Tool';
-import useProducts from '../../../hooks/useReviews';
+import useProducts from '../../../hooks/useProducts';
 
 const Tools = () => {
     const [products, setProducts] = useProducts();
