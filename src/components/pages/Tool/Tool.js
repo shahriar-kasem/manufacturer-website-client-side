@@ -10,16 +10,16 @@ const Tool = ({ product }) => {
     }
 
     return (
-        <div class="card max-w-md bg-base-100 shadow-xl">
+        <div className="card max-w-md bg-base-100 shadow-xl">
             <figure><img className='rounded-lg h-48' src={img} alt="Shoes" /></figure>
-            <div class="card-body">
-                <h2 class="card-title">{name}</h2>
+            <div className="card-body">
+                <h2 className="card-title">{name}</h2>
                 <p><span className='font-bold text-gray-500'>Tool Details: </span>{description.slice(0, 300)}{description.length < 300 ? '': '..........'}</p>
                 <h5 className='text-normal font-semibold text-red-500'>Minimum order quantity: <span className='text-red-600'>{minimumOrderQuantity}</span></h5>
                 <h4 className='text-lg font-semibold text-success'>Available quantity: {availableQuantity}</h4>
                 <h6 className='text-lg font-semibold'>Price: ${price}</h6>
-                <div class="card-actions justify-start">
-                    <button onClick={() => handlePurchase(_id)} class="btn btn-outline btn-success">Purchase</button>
+                <div className="card-actions justify-start">
+                    <button onClick={() => handlePurchase(_id)} className="btn btn-outline btn-success">Purchase</button>
                 </div>
             </div>
         </div>

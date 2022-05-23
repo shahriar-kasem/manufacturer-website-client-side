@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -32,9 +33,13 @@ const Purchase = () => {
         const customerEmail = data.email;
         const purchaseQuantity = parseInt(data.quantity);
         const phone = data.phone;
-        const purchase = {productId, productName, productPrice, customerName, customerEmail, purchaseQuantity, phone}
+        const purchase = { productId, productName, productPrice, customerName, customerEmail, purchaseQuantity, phone }
         if ((purchaseQuantity > tool?.minimumOrderQuantity) && (purchaseQuantity < tool?.availableQuantity)) {
-            console.log(purchase)
+            axios({
+                method: 'POST',
+                url: `http://localhost:5000/order`,
+                data: purchase,
+            });
         }
         else {
             toast.error('Something went wrong! Please try again later')
@@ -55,20 +60,20 @@ const Purchase = () => {
 
     return (
         <section>
-            <div class="hero w-full bg-spring-background">
-                <div class="hero-content flex-col-reverse lg:flex-row-reverse">
-                    <div class="flex flex-col items-center lg:text-left w-full md:w-1/2 lg:pl-20">
+            <div className="hero w-full bg-spring-background">
+                <div className="hero-content flex-col-reverse lg:flex-row-reverse">
+                    <div className="flex flex-col items-center lg:text-left w-full md:w-1/2 lg:pl-20">
                         <div>
                             <img className='h-48' src={tool?.img} alt="" />
                         </div>
-                        <h1 class="text-xl font-bold mt-2">{tool?.name}</h1>
-                        <p class="py-6">{tool?.description}</p>
+                        <h1 className="text-xl font-bold mt-2">{tool?.name}</h1>
+                        <p className="py-6">{tool?.description}</p>
                         <h3 className='text-lg text-red-500 font-semibold'>Minimum purchase amount: {tool?.minimumOrderQuantity}</h3>
                         <h3 className='text-xl text-success font-bold'>Available amount: {tool?.availableQuantity}</h3>
                         <h3 className='text-3xl font-semibold'>Price: {tool?.price}</h3>
                     </div>
-                    <div class="card w-full lg:w-1/2 max-w-sm shadow-2xl bg-base-100">
-                        <div class="card-body">
+                    <div className="card w-full lg:w-1/2 max-w-sm shadow-2xl bg-base-100">
+                        <div className="card-body">
                             <h2 className='text-center text-success font-bold'><i>Purchase now!</i></h2>
                             <form className='flex flex-col items-center' onSubmit={handleSubmit(handlePurchase)}>
                                 <div onChange={handleName} className="form-control w-full max-w-xs">
@@ -118,17 +123,17 @@ const Purchase = () => {
                                 </div>
                                 <div className="form-control w-full max-w-xs">
                                     <label className="label">
-                                        <span className="label-text">Phone <span className='text-gray-500'>(Optional)</span></span>
+                                        <span className="label-text">Phone</span>
                                     </label>
                                     <input
                                         type="number"
                                         placeholder="Phone"
                                         className="input input-bordered w-full max-w-xs"
                                         {...register("phone", {
-                                            // required: {
-                                            //     value: true,
-                                            //     message: 'Phone number is required'
-                                            // }
+                                            required: {
+                                                value: true,
+                                                message: 'Phone number is required'
+                                            }
                                         })}
                                     />
                                     <label className="label">
