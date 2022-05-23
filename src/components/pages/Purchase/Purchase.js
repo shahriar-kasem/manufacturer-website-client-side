@@ -33,13 +33,16 @@ const Purchase = () => {
         const customerEmail = data.email;
         const purchaseQuantity = parseInt(data.quantity);
         const phone = data.phone;
-        const purchase = { productId, productName, productPrice, customerName, customerEmail, purchaseQuantity, phone }
+        const purchaseStatus = 'Pending';
+        const purchase = { productId, productName, productPrice, customerName, customerEmail, purchaseQuantity, phone, purchaseStatus }
         if ((purchaseQuantity > tool?.minimumOrderQuantity) && (purchaseQuantity < tool?.availableQuantity)) {
             axios({
                 method: 'POST',
                 url: `http://localhost:5000/order`,
                 data: purchase,
             });
+            toast.success('Your order placed successfully. Please pay to confirm your purchase');
+            event.target.reset();
         }
         else {
             toast.error('Something went wrong! Please try again later')
@@ -70,7 +73,7 @@ const Purchase = () => {
                         <p className="py-6">{tool?.description}</p>
                         <h3 className='text-lg text-red-500 font-semibold'>Minimum purchase amount: {tool?.minimumOrderQuantity}</h3>
                         <h3 className='text-xl text-success font-bold'>Available amount: {tool?.availableQuantity}</h3>
-                        <h3 className='text-3xl font-semibold'>Price: {tool?.price}</h3>
+                        <h3 className='text-3xl font-semibold'>Price: ${tool?.price}</h3>
                     </div>
                     <div className="card w-full lg:w-1/2 max-w-sm shadow-2xl bg-base-100">
                         <div className="card-body">
@@ -145,7 +148,7 @@ const Purchase = () => {
                                         <span className="label-text">Address</span>
                                     </label>
                                     <textarea
-                                        rows={3}
+                                        rows={2}
                                         type="text"
                                         placeholder="Address"
                                         className="textarea input-bordered w-full max-w-xs"
@@ -184,8 +187,8 @@ const Purchase = () => {
                                     />
                                     <label className="label">
                                         {errors.quantity?.type === 'required' && <p className='text-red-500'><small>{errors.quantity.message}</small></p>}
-                                        {errors.quantity?.type === 'min' && <p className='text-red-500'><small>Minimum purchase amount can be {minimum}</small></p>}
-                                        {errors.quantity?.type === 'max' && <p className='text-red-500'><small>Maximum purchase amount can be {maximum}</small></p>}
+                                        {errors.quantity?.type === 'min' && <p className='text-red-500'><small>Minimum purchase quantity {minimum}</small></p>}
+                                        {errors.quantity?.type === 'max' && <p className='text-red-500'><small>Maximum purchase quantity {maximum}</small></p>}
                                     </label>
                                 </div>
                                 <input className='btn btn-outline btn-success' type="submit" value='Proceed' />
