@@ -69,6 +69,7 @@ const AddReview = () => {
                                         <span className="label-text">Review</span>
                                     </label>
                                     <textarea
+                                        rows={5}
                                         type="text"
                                         placeholder="Description"
                                         className="textarea input-bordered w-full max-w-xs"
