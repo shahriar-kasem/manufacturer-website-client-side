@@ -112,12 +112,12 @@ const AddReview = () => {
                                     <label className="label">
                                         <span className="label-text">Ratings</span>
                                     </label>
-                                    <div class="rating input input-bordered w-full max-w-xs flex items-center mb-5">
-                                        <input onChange={() => setStar(1)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-                                        <input onChange={() => setStar(2)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-                                        <input onChange={() => setStar(3)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-                                        <input onChange={() => setStar(4)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-                                        <input onChange={() => setStar(5)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                                    <div className="rating input input-bordered w-full max-w-xs flex items-center mb-5">
+                                        <input onChange={() => setStar(1)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                        <input onChange={() => setStar(2)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                        <input onChange={() => setStar(3)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                        <input onChange={() => setStar(4)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                        <input onChange={() => setStar(5)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                     </div>
                                 </div>
 

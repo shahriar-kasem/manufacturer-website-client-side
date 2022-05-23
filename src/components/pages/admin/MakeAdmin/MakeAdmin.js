@@ -2,9 +2,9 @@ import React from 'react';
 
 const MakeAdmin = () => {
     return (
-        <div>
-            
-        </div>
+        <section>
+            <h1>Make Admin</h1>
+        </section>
     );
 };
 

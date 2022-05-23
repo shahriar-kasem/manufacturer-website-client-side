@@ -41,8 +41,8 @@ const Login = () => {
 
     return (
         <section className='mt-5 lg:mt-10'>
-            <div class="card max-w-md bg-base-100 shadow-xl mx-auto">
-                <div class="">
+            <div className="card max-w-md bg-base-100 shadow-xl mx-auto">
+                <div className="">
                     <h1 className='text-xl font-semibold text-blue-500 text-center'>Please login</h1>
                     <form className='flex flex-col items-center' onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control w-full max-w-xs">
@@ -103,7 +103,7 @@ const Login = () => {
                         <p className='text-center'><small>New to Manufacturer? <Link className='text-blue-500' to='/signup'>Create new account</Link></small></p>
                     </div>
                 </div>
-                <div class="divider">Or</div>
+                <div className="divider">Or</div>
                 {
                         gError && <p className='text-red-500 py-1 text-center'><small>{gError.message}</small></p>
                     }
