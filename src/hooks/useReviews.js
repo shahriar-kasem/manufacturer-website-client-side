@@ -7,12 +7,12 @@ const useReviews = () => {
     // const [reviews, setReviews] = useState([]);
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/reviews')
+    //     fetch('https://gentle-spire-70229.herokuapp.com/reviews')
     //         .then(res => res.json())
     //         .then(data => setReviews(data))
     // }, [])
     // return [reviews, setReviews];
-    const {data: reviews, isLoading, refetch} = useQuery('reviewsData', () => fetch(`http://localhost:5000/reviews`).then(res=>res.json()
+    const {data: reviews, isLoading, refetch} = useQuery('reviewsData', () => fetch(`https://gentle-spire-70229.herokuapp.com/reviews`).then(res=>res.json()
     )
     )
 

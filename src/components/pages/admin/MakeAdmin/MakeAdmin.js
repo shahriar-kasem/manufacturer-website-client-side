@@ -12,7 +12,7 @@ const MakeAdmin = () => {
     const navigate = useNavigate();
 
     const handleAdmin = (email) => {
-        axios.patch(`http://localhost:5000/user/admin?email=${email}`,
+        axios.patch(`https://gentle-spire-70229.herokuapp.com/user/admin?email=${email}`,
             { role: 'Admin' },
             {
                 headers: {
@@ -35,7 +35,7 @@ const MakeAdmin = () => {
         })
     }
     const handleRemoveAdmin = (email) => {
-        axios.patch(`http://localhost:5000/user/admin?email=${email}`,
+        axios.patch(`https://gentle-spire-70229.herokuapp.com/user/admin?email=${email}`,
             { role: '' },
             {
                 headers: {
@@ -83,9 +83,9 @@ const MakeAdmin = () => {
                                     <td>{user.email}</td>
                                     <td className='text-center'>{user.role}</td>
                                     <td className='text-center'>{user.role === 'Admin' ?
-                                        <button onClick={() => handleRemoveAdmin(user.email)} className='btn btn-xs'>Remove Admin</button>
+                                        <button onClick={() => handleRemoveAdmin(user.email)} className='btn btn-outline btn-error btn-xs'>Remove Admin</button>
                                         :
-                                        <button disabled={user.role === 'Admin'} onClick={() => handleAdmin(user.email)} className='btn btn-xs'>Make Admin</button>
+                                        <button disabled={user.role === 'Admin'} onClick={() => handleAdmin(user.email)} className='btn btn-outline btn-success btn-xs'>Make Admin</button>
 
                                     }</td>
                                 </tr>

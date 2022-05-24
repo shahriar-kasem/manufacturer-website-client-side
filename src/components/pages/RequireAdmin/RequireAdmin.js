@@ -1,3 +1,4 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate, useLocation } from 'react-router-dom';
@@ -7,14 +8,16 @@ import Loading from '../../shared/Loading/Loading';
 
 const RequireAdmin = ({children}) => {
     const [user, loading] = useAuthState(auth);
-    const [admin] = useAdmin(user);
+    const [admin, adminLoading] = useAdmin(user);
     const location = useLocation();
 
-    if(loading){
+    if(loading || adminLoading){
       return <Loading></Loading>
     }
    
     if (!user || !admin) {
+        signOut(auth);
+        localStorage.removeItem('accessTokenST');
         return <Navigate to="/login" state={{ from: location }} replace />;
       }
     

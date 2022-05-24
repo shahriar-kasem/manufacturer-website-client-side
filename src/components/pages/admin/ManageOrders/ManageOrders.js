@@ -1,9 +1,42 @@
 import React from 'react';
+import useOrders from '../../../../hooks/useOrders';
 
 const ManageOrders = () => {
+    const { orders, isLoading, refetch } = useOrders();
+    console.log(orders)
+
     return (
         <section>
-            <h1>Manage Orders</h1>
+            <h1 className='text-center text-2xl text-purple-500 font-bold my-2'>Manage Orders</h1>
+            <div class="overflow-x-auto">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Customer Email</th>
+                            <th>Order Transaction ID</th>
+                            <th>Purchase Status</th>
+                            <th>Payment Status</th>
+                            <th>Update Status</th>
+                        </tr>
+                    </thead>
+                  {
+                      orders && 
+                      orders.map((order, index) => 
+                        <tbody key={order._id}>
+                        <tr>
+                            <th>{index +1}</th>
+                            <td>{order.customerEmail}</td>
+                            <td>{order.orderId}</td>
+                            <td>{order.purchaseStatus}</td>
+                            <td>{order.paymentStatus}</td>
+                            <td><button>Update</button></td>
+                        </tr>
+                    </tbody>
+                    )
+                  }
+                </table>
+            </div>
         </section>
     );
 };

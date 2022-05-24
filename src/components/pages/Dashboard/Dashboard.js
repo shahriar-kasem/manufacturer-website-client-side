@@ -1,7 +1,12 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
+import auth from '../../../firebase.init';
+import useAdmin from '../../../hooks/useAdmin';
 
 const Dashboard = () => {
+    const [user] = useAuthState(auth);
+    const [admin] = useAdmin(user);
 
     return (
         <section>
@@ -24,10 +29,18 @@ const Dashboard = () => {
                         <li><Link className='hover:text-orange-500 hover:bordered' to='/dashboard'>My Profile</Link></li>
                         <li><Link className='hover:text-orange-500 hover:bordered' to='myOrders'>My Orders</Link></li>
                         <li><Link className='hover:text-orange-500 hover:bordered' to='addReview'>Add A Review</Link></li>
-                        <li><Link className='hover:text-orange-500 hover:bordered' to='manageOrders'>Manage All Orders</Link></li>
-                        <li><Link className='hover:text-orange-500 hover:bordered' to='addProduct'>Add A Product</Link></li>
-                        <li><Link className='hover:text-orange-500 hover:bordered' to='makeAdmin'>Admin Panel</Link></li>
-                        <li><Link className='hover:text-orange-500 hover:bordered' to='manageProducts'>Manage Products</Link></li>
+                       {
+                           admin &&  <li><Link className='hover:text-orange-500 hover:bordered' to='manageOrders'>Manage All Orders</Link></li>
+                       }
+                       {
+                           admin &&  <li><Link className='hover:text-orange-500 hover:bordered' to='addProduct'>Add A Product</Link></li>
+                       }
+                       {
+                           admin &&  <li><Link className='hover:text-orange-500 hover:bordered' to='makeAdmin'>Admin Panel</Link></li>
+                       }
+                        {
+                            admin && <li><Link className='hover:text-orange-500 hover:bordered' to='manageProducts'>Manage Products</Link></li>
+                        }
                     </ul>
 
                 </div>

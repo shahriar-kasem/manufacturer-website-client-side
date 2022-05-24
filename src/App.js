@@ -20,42 +20,59 @@ import MakeAdmin from './components/pages/admin/MakeAdmin/MakeAdmin';
 import ManageProducts from './components/pages/admin/ManageProducts/ManageProducts';
 import Tools from './components/pages/Tools/Tools';
 import Purchase from './components/pages/Purchase/Purchase';
+import RequireAdmin from './components/pages/RequireAdmin/RequireAdmin';
 
 function App() {
   return (
     <section>
       <div className='lg:mx-20'>
-      <Navbar></Navbar>
+        <Navbar></Navbar>
       </div>
       <div>
-      <Routes>
-        <Route path='/' element={<Home></Home>}></Route>
-        <Route path='/home' element={<Home></Home>}></Route>
-        <Route path='/dashboard' element={
-          <RequireAuth>
-            <Dashboard></Dashboard>
-          </RequireAuth>
-        }>
-          <Route index element={<MyProfile></MyProfile>}></Route>
-          <Route path='myOrders' element={<MyOrders></MyOrders>}></Route>
-          <Route path='addReview' element={<AddReview></AddReview>}></Route>
-          <Route path='manageOrders' element={<ManageOrders></ManageOrders>}></Route>
-          <Route path='addProduct' element={<AddProduct></AddProduct>}></Route>
-          <Route path='makeAdmin' element={<MakeAdmin></MakeAdmin>}></Route>
-          <Route path='manageProducts' element={<ManageProducts></ManageProducts>}></Route>
-        </Route>
-        <Route path='/tools' element={<Tools></Tools>}></Route>
-        <Route path='/purchase/:id' element={
-          <RequireAuth>
-            <Purchase></Purchase>
-          </RequireAuth>
-        }></Route>
-        <Route path='/blog' element={<Blog></Blog>}></Route>
-        <Route path='/reviews' element={<Reviews></Reviews>}></Route>
-        <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/signup' element={<SignUp></SignUp>}></Route>
-        <Route path='*' element={<NotFound></NotFound>}></Route>
-      </Routes>
+        <Routes>
+          <Route path='/' element={<Home></Home>}></Route>
+          <Route path='/home' element={<Home></Home>}></Route>
+          <Route path='/dashboard' element={
+            <RequireAuth>
+              <Dashboard></Dashboard>
+            </RequireAuth>
+          }>
+            <Route index element={<MyProfile></MyProfile>}></Route>
+            <Route path='myOrders' element={<MyOrders></MyOrders>}></Route>
+            <Route path='addReview' element={<AddReview></AddReview>}></Route>
+            <Route path='manageOrders' element={
+              <RequireAdmin>
+                <ManageOrders></ManageOrders>
+              </RequireAdmin>
+            }></Route>
+            <Route path='addProduct' element={
+              <RequireAdmin>
+                <AddProduct></AddProduct>
+              </RequireAdmin>
+            }></Route>
+            <Route path='makeAdmin' element={
+              <RequireAdmin>
+                <MakeAdmin></MakeAdmin>
+              </RequireAdmin>
+            }></Route>
+            <Route path='manageProducts' element={
+              <RequireAdmin>
+                <ManageProducts></ManageProducts>
+              </RequireAdmin>
+            }></Route>
+          </Route>
+          <Route path='/tools' element={<Tools></Tools>}></Route>
+          <Route path='/purchase/:id' element={
+            <RequireAuth>
+              <Purchase></Purchase>
+            </RequireAuth>
+          }></Route>
+          <Route path='/blog' element={<Blog></Blog>}></Route>
+          <Route path='/reviews' element={<Reviews></Reviews>}></Route>
+          <Route path='/login' element={<Login></Login>}></Route>
+          <Route path='/signup' element={<SignUp></SignUp>}></Route>
+          <Route path='*' element={<NotFound></NotFound>}></Route>
+        </Routes>
       </div>
       <ToastContainer />
     </section>

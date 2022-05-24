@@ -1,6 +1,9 @@
 import React from 'react';
+import useProducts from '../../../../hooks/useProducts';
 
 const ManageProducts = () => {
+    const {products, isLoading, refetch} = useProducts();
+    // console.log(products)
 
     return (
         <section>
@@ -10,19 +13,26 @@ const ManageProducts = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Product Name</th>
+                            <th>Available quantity</th>
+                            <th>Minimum order quantity</th>
+                            <th>Price</th>
+                            <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                        </tr>
-                    </tbody>
+                    {
+                        products?.map((product,index) => 
+                        <tbody key={product._id}>
+                            <tr>
+                                <th>{index + 1 }</th>
+                                <td>{product.name}</td>
+                                <td>{product.availableQuantity}</td>
+                                <td>{product.minimumOrderQuantity}</td>
+                                <td>{product.price}</td>
+                                <td><button class="btn btn-outline btn-error btn-xs">Delete</button></td>
+                            </tr>
+                        </tbody>)
+                    }
                 </table>
             </div>
         </section>
