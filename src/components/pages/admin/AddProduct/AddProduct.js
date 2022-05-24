@@ -15,7 +15,7 @@ const AddProduct = () => {
     const addProduct = (data, event) => {
         const name = data.name;
         const description = data.description;
-        const img = '';
+        const img = data.image;
         const minimumOrderQuantity = parseInt(data.minimumQuantity);
         const availableQuantity = parseInt(data.availableQuantity);
         const price = parseInt(data.price);
@@ -64,6 +64,25 @@ const AddProduct = () => {
                         />
                         <label className="label">
                             {errors.name?.type === 'required' && <p className='text-red-500'><small>{errors.name.message}</small></p>}
+                        </label>
+                    </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Product image</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Image URL"
+                            className="input input-bordered w-full max-w-xs"
+                            {...register("image", {
+                                required: {
+                                    value: true,
+                                    message: 'Product image is required'
+                                }
+                            })}
+                        />
+                        <label className="label">
+                            {errors.image?.type === 'required' && <p className='text-red-500'><small>{errors.image.message}</small></p>}
                         </label>
                     </div>
                     <div className="form-control w-full max-w-xs">

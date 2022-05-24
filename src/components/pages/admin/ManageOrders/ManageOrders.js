@@ -4,7 +4,6 @@ import Loading from '../../../shared/Loading/Loading';
 
 const ManageOrders = () => {
     const { orders, isLoading } = useOrders();
-    console.log(orders)
 
     if(isLoading){
         return <Loading></Loading>
