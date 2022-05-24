@@ -1,9 +1,14 @@
 import React from 'react';
 import useOrders from '../../../../hooks/useOrders';
+import Loading from '../../../shared/Loading/Loading';
 
 const ManageOrders = () => {
-    const { orders, isLoading, refetch } = useOrders();
+    const { orders, isLoading } = useOrders();
     console.log(orders)
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
 
     return (
         <section>
@@ -30,7 +35,7 @@ const ManageOrders = () => {
                             <td>{order.orderId}</td>
                             <td>{order.purchaseStatus}</td>
                             <td>{order.paymentStatus}</td>
-                            <td><button>Update</button></td>
+                            <td><button className='btn btn-outline btn-info btn-xs'>Update</button></td>
                         </tr>
                     </tbody>
                     )
