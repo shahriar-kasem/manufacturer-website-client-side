@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import Loading from '../../shared/Loading/Loading';
@@ -11,6 +11,7 @@ import Loading from '../../shared/Loading/Loading';
 const Purchase = () => {
     const { id } = useParams();
     const [user] = useAuthState(auth);
+    const navigate = useNavigate();
     const [userName, setUserName] = useState(user?.displayName);
     const [userEmail, setUserEmail] = useState(user?.email);
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -41,10 +42,20 @@ const Purchase = () => {
         if ((purchaseQuantity > tool?.minimumOrderQuantity) && (purchaseQuantity < tool?.availableQuantity)) {
             axios({
                 method: 'POST',
+                headers: {
+                    authorization: `${localStorage.getItem('accessTokenST')}`
+                },
                 url: `http://localhost:5000/order`,
                 data: purchase,
-            });
-            toast.success('Your order placed successfully. Please pay to confirm your purchase');
+            }).then(res => {
+                if (res.status === 200) {
+                    toast.success('Your order placed successfully. Please pay to confirm your purchase');
+                }
+            }).catch((error) => {
+                const errorMessage = error.response.data.message;
+                toast.error(errorMessage);
+            })
+            navigate('/');
         }
         else {
             toast.error('Something went wrong! Please try again later')
@@ -177,7 +188,7 @@ const Purchase = () => {
                                             <span className='text-xs text-green-600'>Available amount {maximum}</span>
                                         </span>
                                     </label>
-                                    <input 
+                                    <input
                                         value={defaultQuantity || ''}
                                         type="number"
                                         placeholder="Amount"
@@ -197,7 +208,7 @@ const Purchase = () => {
                                         {errors.quantity?.type === 'max' && <p className='text-red-500'><small>Maximum purchase quantity {maximum}</small></p>}
                                     </label>
                                     <label className="label mb-1">
-                                    {
+                                        {
                                             totalPrice && <p className='font-semibold'>Total Cost: ${totalPrice}</p>
                                         }
                                     </label>
