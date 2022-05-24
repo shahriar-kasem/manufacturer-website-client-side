@@ -1,12 +1,15 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import auth from '../../../../firebase.init';
 import useUsers from '../../../../hooks/useUsers';
 import Loading from '../../../shared/Loading/Loading';
 
 const MakeAdmin = () => {
     const { users, isLoading, refetch } = useUsers();
-    console.log('inside makeadmin', users)
+    const navigate = useNavigate();
 
     const handleAdmin = (email) => {
         axios.patch(`http://localhost:5000/users?email=${email}`,
@@ -24,6 +27,11 @@ const MakeAdmin = () => {
         }).catch((error) => {
             toast.error('Something went wrong! Please try again later');
             refetch();
+            if (error) {
+                signOut(auth);
+                localStorage.removeItem('accessTokenST');
+                navigate('/');
+            }
         })
     }
     const handleRemoveAdmin = (email) => {
@@ -42,18 +50,23 @@ const MakeAdmin = () => {
         }).catch((error) => {
             toast.error('Something went wrong! Please try again later');
             refetch();
+            if (error) {
+                signOut(auth);
+                localStorage.removeItem('accessTokenST');
+                navigate('/');
+            }
         })
     }
 
-    if(isLoading){
+    if (isLoading) {
         return <Loading></Loading>
     }
 
     return (
         <section>
             <h1 className='text-center text-2xl text-purple-500 font-bold my-2'>Admin Panel</h1>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
