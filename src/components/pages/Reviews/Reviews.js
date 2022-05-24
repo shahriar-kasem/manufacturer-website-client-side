@@ -2,12 +2,9 @@ import React from 'react';
 import useReviews from '../../../hooks/useReviews';
 import Review from '../Review/Review';
 import { useNavigate } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from '../../../firebase.init';
 import reviewLogo from '../../../images/logo/reviewLogo.png';
 
 const Reviews = () => {
-    const [user] = useAuthState(auth);
     const navigate = useNavigate();
     const {reviews} = useReviews();
 
