@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react"
+import { useQuery } from "react-query";
+import Loading from "../components/shared/Loading/Loading";
 
 const useProducts = () => {
-    const [products, setProducts] = useState([]);
+    const {data: products, isLoading, refetch} = useQuery('productData', () => fetch(`http://localhost:5000/products`).then(res=>res.json()
+    )
+    )
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
     
-    useEffect(() => {
-        fetch('http://localhost:5000/products')
-            .then(res => res.json())
-            .then(data => setProducts(data))
-    }, [])
-    return [products, setProducts];
+    return {products, isLoading, refetch};
 }
 
 export default useProducts;

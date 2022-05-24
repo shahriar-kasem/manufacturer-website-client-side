@@ -3,7 +3,7 @@ import Tool from '../Tool/Tool';
 import useProducts from '../../../hooks/useProducts';
 
 const Tools = () => {
-    const [products, setProducts] = useProducts();
+    const {products} = useProducts();
 
     return (
         <section className='md:mt-5 lg:w-11/12 md:w-11/12 mx-auto mb-5'>

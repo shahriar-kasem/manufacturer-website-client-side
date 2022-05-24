@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -11,7 +12,7 @@ const AddReview = () => {
     const [user] = useAuthState(auth);
     const [userName, setUserName] = useState(user?.displayName);
     const navigate = useNavigate();
-    const [reviews, setReviews] = useReviews();
+    const { reviews, refetch } = useReviews();
     const [star, setStar] = useState(5);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const userProfileAlt = 'https://i.ibb.co/D4jRPc7/png-round-blue-contact-user-profile-icon-11639786938sxvzj5ogua.png';
@@ -24,16 +25,23 @@ const AddReview = () => {
         const img = userImg;
         const email = user.email;
         const review = { name, description, ratings, img, email };
-        const newReviews = [...reviews, review];
         axios({
             method: 'POST',
             url: 'http://localhost:5000/review',
             data: review,
-        });
-        setReviews(newReviews)
-        event.target.reset();
+        }).then(res=>{
+            if(res.status === 200){
+                refetch();
+                event.target.reset();
+                toast.success('Review added successfully')
+            }
+        }).catch((error)=>{
+            const errorMessage = error.response.data.message;
+            toast.error(errorMessage);
+            localStorage.removeItem('accessTokenST')
+            signOut(auth);
+        })
         navigate('/reviews')
-        toast.success('Review added successfully')
     };
     const handleName = (event) => {
         const newName = event.target.value;

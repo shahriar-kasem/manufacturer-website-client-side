@@ -9,7 +9,7 @@ import reviewLogo from '../../../images/logo/reviewLogo.png';
 const Reviews = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
-    const [reviews] = useReviews();
+    const {reviews} = useReviews();
 
     return (
         <section className='md:mt-5 lg:w-11/12 md:w-11/12 mx-auto mb-5'>
@@ -29,7 +29,7 @@ const Reviews = () => {
             <div className='flex justify-center'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-3'>
                     {
-                        reviews.map((review, index) => <Review
+                        reviews?.map((review, index) => <Review
                             key={index}
                             review={review}
                         ></Review>)
