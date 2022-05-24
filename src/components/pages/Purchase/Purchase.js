@@ -14,7 +14,8 @@ const Purchase = () => {
     const [userName, setUserName] = useState(user?.displayName);
     const [userEmail, setUserEmail] = useState(user?.email);
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { data: tool, isLoading } = useQuery('productData', () => fetch(`http://localhost:5000/product/${id}`).then(res => res.json()));
+    const { data: tool, isLoading, refetch } = useQuery('productData', () => fetch(`http://localhost:5000/product/${id}`).then(res => res.json()));
+    const [defaultQuantity, setDefaultQuantity] = useState();
 
     const [minimum, setMinimum] = useState();
     const [maximum, setMaximum] = useState();
@@ -23,7 +24,8 @@ const Purchase = () => {
         const maximumPurchase = tool?.availableQuantity;
         setMinimum(minimumPurchase)
         setMaximum(maximumPurchase)
-    }, [tool])
+        setDefaultQuantity(minimumPurchase)
+    }, [tool, refetch])
 
     const handlePurchase = async (data, event) => {
         const productId = tool._id;
@@ -42,7 +44,6 @@ const Purchase = () => {
                 data: purchase,
             });
             toast.success('Your order placed successfully. Please pay to confirm your purchase');
-            event.target.reset();
         }
         else {
             toast.error('Something went wrong! Please try again later')
@@ -55,6 +56,10 @@ const Purchase = () => {
     const handleEmail = event => {
         const newEmail = event.target.value;
         setUserEmail(newEmail);
+    }
+    const handleQuantity = event => {
+        const newQuantity = event.target.value;
+        setDefaultQuantity(newQuantity);
     }
 
     if (isLoading) {
@@ -163,7 +168,7 @@ const Purchase = () => {
                                         {errors.address?.type === 'required' && <p className='text-red-500'><small>{errors.address.message}</small></p>}
                                     </label>
                                 </div>
-                                <div className="form-control w-full max-w-xs">
+                                <div onChange={handleQuantity} className="form-control w-full max-w-xs">
                                     <label className="label">
                                         <span className="label-text">Quantity
                                             <br />
@@ -172,7 +177,8 @@ const Purchase = () => {
                                             <span className='text-xs text-green-600'>Available amount {maximum}</span>
                                         </span>
                                     </label>
-                                    <input
+                                    <input 
+                                        value={defaultQuantity}
                                         type="number"
                                         placeholder="Amount"
                                         className="input input-bordered w-full max-w-xs"
@@ -191,7 +197,7 @@ const Purchase = () => {
                                         {errors.quantity?.type === 'max' && <p className='text-red-500'><small>Maximum purchase quantity {maximum}</small></p>}
                                     </label>
                                 </div>
-                                <input className='btn btn-outline btn-success' type="submit" value='Proceed' />
+                                <input disabled={errors.name || errors.email || errors.quantity || errors.address || errors.phone} className='btn btn-outline btn-success' type="submit" value='Proceed' />
                             </form>
                         </div>
                     </div>

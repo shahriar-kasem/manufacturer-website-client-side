@@ -4,6 +4,7 @@ import Review from '../Review/Review';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
+import reviewLogo from '../../../images/logo/reviewLogo.png';
 
 const Reviews = () => {
     const [user] = useAuthState(auth);
@@ -14,8 +15,8 @@ const Reviews = () => {
         <section className='md:mt-5 lg:w-11/12 md:w-11/12 mx-auto mb-5'>
             <div>
                 <div className='flex justify-between items-center mx-1 md:mx-5'>
-                    <div className='w-36'>
-                        <img src="https://i.ibb.co/pLKmYV0/quote-sign-icon-quotation-mark-symbol-vector-3756804.png" alt="" />
+                    <div className='w-32'>
+                        <img src={reviewLogo} alt="" />
                     </div>
                     <div>
                         <i>
