@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
+
     return (
         <section>
             <div className="flex-none lg:hidden md:pl-5">
@@ -20,13 +21,13 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
-                        <li><Link to='/dashboard'>My Profile</Link></li>
-                        <li><Link to='myOrders'>My Orders</Link></li>
-                        <li><Link to='addReview'>Add A Review</Link></li>
-                        <li><Link to='manageOrders'>Manage All Orders</Link></li>
-                        <li><Link to='addProduct'>Add A Product</Link></li>
-                        <li><Link to='makeAdmin'>Make Admin</Link></li>
-                        <li><Link to='manageProducts'>Manage Products</Link></li>
+                        <li><Link className='hover:text-orange-500 hover:bordered' to='/dashboard'>My Profile</Link></li>
+                        <li><Link className='hover:text-orange-500 hover:bordered' to='myOrders'>My Orders</Link></li>
+                        <li><Link className='hover:text-orange-500 hover:bordered' to='addReview'>Add A Review</Link></li>
+                        <li><Link className='hover:text-orange-500 hover:bordered' to='manageOrders'>Manage All Orders</Link></li>
+                        <li><Link className='hover:text-orange-500 hover:bordered' to='addProduct'>Add A Product</Link></li>
+                        <li><Link className='hover:text-orange-500 hover:bordered' to='makeAdmin'>Admin Panel</Link></li>
+                        <li><Link className='hover:text-orange-500 hover:bordered' to='manageProducts'>Manage Products</Link></li>
                     </ul>
 
                 </div>

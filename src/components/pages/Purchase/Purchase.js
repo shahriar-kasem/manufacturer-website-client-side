@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -36,7 +37,7 @@ const Purchase = () => {
         const customerEmail = data.email;
         const customerAddress = data.address;
         const purchaseQuantity = parseInt(data.quantity);
-        const phone = data.phone;
+        const phone = parseInt(data.phone);
         const purchaseStatus = 'Pending';
         const purchase = { productId, productName, productPrice, customerName, customerEmail, customerAddress, purchaseQuantity, phone, purchaseStatus }
         if ((purchaseQuantity > tool?.minimumOrderQuantity) && (purchaseQuantity < tool?.availableQuantity)) {
@@ -54,6 +55,8 @@ const Purchase = () => {
             }).catch((error) => {
                 const errorMessage = error.response.data.message;
                 toast.error(errorMessage);
+                localStorage.removeItem('accessTokenST')
+                signOut(auth);
             })
             navigate('/');
         }
@@ -122,6 +125,7 @@ const Purchase = () => {
                                         <span className="label-text">Email</span>
                                     </label>
                                     <input
+                                        readOnly
                                         value={userEmail || ''}
                                         type="email"
                                         placeholder='Your email'
