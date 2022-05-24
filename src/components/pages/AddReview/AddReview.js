@@ -27,7 +27,7 @@ const AddReview = () => {
         const review = { name, description, ratings, img, email };
         axios({
             method: 'POST',
-            url: 'https://gentle-spire-70229.herokuapp.com/review',
+            url: 'http://localhost:5000/review',
             data: review,
         }).then(res=>{
             if(res.status === 200){

@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import Loading from "../components/shared/Loading/Loading";
 
 const useOrders = () => {
-    const { data: orders, isLoading, refetch } = useQuery('ordersData', () => fetch(`https://gentle-spire-70229.herokuapp.com/orders`, {
+    const { data: orders, isLoading, refetch } = useQuery('ordersData', () => fetch(`http://localhost:5000/orders`, {
         headers: {
             authorization: `${localStorage.getItem('accessTokenST')}`
         }

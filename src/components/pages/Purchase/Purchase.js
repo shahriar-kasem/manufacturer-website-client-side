@@ -3,11 +3,9 @@ import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
-import Loading from '../../shared/Loading/Loading';
 
 const Purchase = () => {
     const { id } = useParams();
@@ -16,11 +14,12 @@ const Purchase = () => {
     const [userName, setUserName] = useState(user?.displayName);
     const [userEmail, setUserEmail] = useState(user?.email);
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { data: tool, isLoading } = useQuery('productData', () => fetch(`https://gentle-spire-70229.herokuapp.com/product/${id}`, {
-        headers: {
-            authorization: `${localStorage.getItem('accessTokenST')}`
-        }
-    }).then(res => res.json()));
+    const [tool, setTool] = useState([]);
+    useEffect(()=>{
+        fetch(`http://localhost:5000/product/${id}`)
+        .then(res=>res.json())
+        .then(data=>setTool(data))
+    },[id])
     const [defaultQuantity, setDefaultQuantity] = useState('');
 
     const [minimum, setMinimum] = useState();
@@ -51,12 +50,12 @@ const Purchase = () => {
                 headers: {
                     authorization: `${localStorage.getItem('accessTokenST')}`
                 },
-                url: `https://gentle-spire-70229.herokuapp.com/order`,
+                url: `http://localhost:5000/order`,
                 data: purchase,
             }).then(res => {
                 if (res.status === 200) {
                     toast.success('Your order placed successfully. Please pay to confirm your purchase');
-                    navigate('/dashboard/myOrders');
+                    navigate('/');
                 }
             }).catch((error) => {
                 const errorMessage = error.response.data.message;
@@ -82,10 +81,6 @@ const Purchase = () => {
         setDefaultQuantity(newQuantity);
     }
     const totalPrice = defaultQuantity * tool?.price;
-
-    if (isLoading) {
-        return <Loading></Loading>
-    }
 
     return (
         <section>
