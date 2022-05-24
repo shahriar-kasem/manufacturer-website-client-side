@@ -12,7 +12,7 @@ const AddReview = () => {
     const [user] = useAuthState(auth);
     const [userName, setUserName] = useState(user?.displayName);
     const navigate = useNavigate();
-    const { reviews, refetch } = useReviews();
+    const { refetch } = useReviews();
     const [star, setStar] = useState(5);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const userProfileAlt = 'https://i.ibb.co/D4jRPc7/png-round-blue-contact-user-profile-icon-11639786938sxvzj5ogua.png';

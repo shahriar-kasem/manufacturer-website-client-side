@@ -9,7 +9,7 @@ const Banner = () => {
 
   return (
     <section className='md:mt-2 lg:mt-4'>
-      <div className="hero min-h-screen bg-banner-background">
+      <div className="hero md:min-h-screen bg-banner-background">
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import { useQuery } from "react-query";
 import Loading from "../components/shared/Loading/Loading";
 
@@ -10,7 +9,7 @@ const useProducts = () => {
     if(isLoading){
         return <Loading></Loading>
     }
-    
+
     return {products, isLoading, refetch};
 }
 
