@@ -36,7 +36,7 @@ const Reviews = () => {
                     }
                 </div>
             </div>
-            <div className="grid flex-grow card rounded-box place-items-center"><button disabled={!user} onClick={() => navigate('/dashboard/addReview')} className="btn w-full">Add Review</button></div>
+            <div className="grid flex-grow card rounded-box place-items-center"><button onClick={() => navigate('/dashboard/addReview')} className="btn w-full">Add Review</button></div>
         </section>
     );
 };

@@ -12,7 +12,7 @@ const MakeAdmin = () => {
     const navigate = useNavigate();
 
     const handleAdmin = (email) => {
-        axios.patch(`http://localhost:5000/users?email=${email}`,
+        axios.patch(`http://localhost:5000/user/admin?email=${email}`,
             { role: 'Admin' },
             {
                 headers: {
@@ -35,7 +35,7 @@ const MakeAdmin = () => {
         })
     }
     const handleRemoveAdmin = (email) => {
-        axios.patch(`http://localhost:5000/users?email=${email}`,
+        axios.patch(`http://localhost:5000/user/admin?email=${email}`,
             { role: '' },
             {
                 headers: {
