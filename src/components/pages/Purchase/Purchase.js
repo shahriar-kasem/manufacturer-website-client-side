@@ -33,10 +33,11 @@ const Purchase = () => {
         const productPrice = tool.price;
         const customerName = data.name;
         const customerEmail = data.email;
+        const customerAddress = data.address;
         const purchaseQuantity = parseInt(data.quantity);
         const phone = data.phone;
         const purchaseStatus = 'Pending';
-        const purchase = { productId, productName, productPrice, customerName, customerEmail, purchaseQuantity, phone, purchaseStatus }
+        const purchase = { productId, productName, productPrice, customerName, customerEmail, customerAddress, purchaseQuantity, phone, purchaseStatus }
         if ((purchaseQuantity > tool?.minimumOrderQuantity) && (purchaseQuantity < tool?.availableQuantity)) {
             axios({
                 method: 'POST',
@@ -61,6 +62,7 @@ const Purchase = () => {
         const newQuantity = event.target.value;
         setDefaultQuantity(newQuantity);
     }
+    const totalPrice = defaultQuantity * tool?.price;
 
     if (isLoading) {
         return <Loading></Loading>
@@ -172,13 +174,11 @@ const Purchase = () => {
                                     <label className="label">
                                         <span className="label-text">Quantity
                                             <br />
-                                            <span className='text-xs text-red-400'>Minimum purchase {minimum}</span>
-                                            <span className='text-xs'> and </span>
                                             <span className='text-xs text-green-600'>Available amount {maximum}</span>
                                         </span>
                                     </label>
                                     <input 
-                                        value={defaultQuantity}
+                                        value={defaultQuantity || ''}
                                         type="number"
                                         placeholder="Amount"
                                         className="input input-bordered w-full max-w-xs"
@@ -195,6 +195,11 @@ const Purchase = () => {
                                         {errors.quantity?.type === 'required' && <p className='text-red-500'><small>{errors.quantity.message}</small></p>}
                                         {errors.quantity?.type === 'min' && <p className='text-red-500'><small>Minimum purchase quantity {minimum}</small></p>}
                                         {errors.quantity?.type === 'max' && <p className='text-red-500'><small>Maximum purchase quantity {maximum}</small></p>}
+                                    </label>
+                                    <label className="label mb-1">
+                                    {
+                                            totalPrice && <p className='font-semibold'>Total Cost: ${totalPrice}</p>
+                                        }
                                     </label>
                                 </div>
                                 <input disabled={errors.name || errors.email || errors.quantity || errors.address || errors.phone} className='btn btn-outline btn-success' type="submit" value='Proceed' />
