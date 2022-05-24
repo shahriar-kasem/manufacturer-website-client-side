@@ -24,6 +24,9 @@ const Navbar = () => {
         {
             !user && <li className='hover:text-purple-500 hover:bordered'><Link to='/login'>Login</Link></li>
         }
+        {
+            user && <li className='hover:text-purple-500 hover:bordered'><button onClick={logout}>Logout</button></li>
+        }
     </>
 
     return (
