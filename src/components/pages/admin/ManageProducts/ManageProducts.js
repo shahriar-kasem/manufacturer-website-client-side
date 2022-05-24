@@ -30,8 +30,8 @@ const ManageProducts = () => {
     return (
         <section>
             <h1 className='text-center text-2xl text-purple-500 font-bold my-2'>Manage Products</h1>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
@@ -51,7 +51,7 @@ const ManageProducts = () => {
                                     <td className='text-center'>{product.availableQuantity}</td>
                                     <td className='text-center'>{product.minimumOrderQuantity}</td>
                                     <td className='text-center'>{product.price}</td>
-                                    <td><button onClick={() => handleProductDelete(product._id)} class="btn btn-outline btn-error btn-xs">Delete</button></td>
+                                    <td><button onClick={() => handleProductDelete(product._id)} className="btn btn-outline btn-error btn-xs">Delete</button></td>
                                 </tr>
                             </tbody>)
                     }
