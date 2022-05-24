@@ -14,10 +14,10 @@ const Navbar = () => {
 
     const menu = <>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/home'>Home</Link></li>
+        <li className='hover:text-purple-500 hover:bordered'><Link to='/tools'>Tools</Link></li>
         {
             user && <li className='hover:text-purple-500 hover:bordered'><Link to='/dashboard'>Dashboard</Link></li>
         }
-        <li className='hover:text-purple-500 hover:bordered'><Link to='/tools'>Tools</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/blog'>Blog</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/reviews'>Reviews</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/myPortfolio'>My Portfolio</Link></li>
@@ -66,7 +66,7 @@ const Navbar = () => {
                         </label>
                         <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             {
-                                user && <li className='hover:text-purple-500 hover:bordered'><Link to='/dashboard'>My Profile</Link></li>
+                                user && <li className='hover:text-purple-500 hover:bordered'><Link to='/dashboard'>Dashboard</Link></li>
                             }
                             {
                                 !user && <>

@@ -6,7 +6,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         'spring-background': "url('/src/images/background/Spring.png')",
-        'banner-background': "url('/src/images/background/banner-bg.jpg')"
+        'banner-background': "url('/src/images/background/banner-bg.jpg')",
+        'ocean-background': "url('/src/images/background/Ocean.png')",
       }
     },
   },
