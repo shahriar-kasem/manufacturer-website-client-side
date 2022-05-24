@@ -44,7 +44,7 @@ const Purchase = () => {
         const purchaseStatus = 'Pending';
         const paymentStatus = 'unpaid'
         const purchase = { productId, productName, productPrice, customerName, customerEmail, customerAddress, purchaseQuantity, phone, purchaseStatus, paymentStatus }
-        if ((purchaseQuantity > tool?.minimumOrderQuantity) && (purchaseQuantity < tool?.availableQuantity)) {
+        if ((purchaseQuantity >= tool?.minimumOrderQuantity) && (purchaseQuantity <= tool?.availableQuantity)) {
             axios({
                 method: 'POST',
                 headers: {
