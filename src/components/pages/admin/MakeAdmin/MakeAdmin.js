@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../../firebase.init';
@@ -8,6 +9,7 @@ import useUsers from '../../../../hooks/useUsers';
 import Loading from '../../../shared/Loading/Loading';
 
 const MakeAdmin = () => {
+    const [user] = useAuthState(auth);
     const { users, isLoading, refetch } = useUsers();
     const navigate = useNavigate();
 
@@ -76,16 +78,16 @@ const MakeAdmin = () => {
                         </tr>
                     </thead>
                     {
-                        users?.map((user, index) =>
-                            <tbody key={user._id}>
-                                <tr className={`${user.role === 'Admin' ? 'active' : ''}`} >
+                        users?.map((u, index) =>
+                            <tbody key={u._id}>
+                                <tr className={`${u.role === 'Admin' ? 'active' : ''}`} >
                                     <td>{index + 1}</td>
-                                    <td>{user.email}</td>
-                                    <td className='text-center'>{user.role}</td>
-                                    <td className='text-center'>{user.role === 'Admin' ?
-                                        <button onClick={() => handleRemoveAdmin(user.email)} className='btn btn-outline btn-error btn-xs'>Remove Admin</button>
+                                    <td>{u.email}</td>
+                                    <td className='text-center'>{u.role}</td>
+                                    <td className='text-center'>{u.role === 'Admin' ?
+                                        <button disabled={u.email === user.email} onClick={() => handleRemoveAdmin(u.email)} className='btn btn-outline btn-error btn-xs'>Remove Admin</button>
                                         :
-                                        <button disabled={user.role === 'Admin'} onClick={() => handleAdmin(user.email)} className='btn btn-outline btn-success btn-xs'>Make Admin</button>
+                                        <button disabled={u.role === 'Admin'} onClick={() => handleAdmin(u.email)} className='btn btn-outline btn-success btn-xs'>Make Admin</button>
 
                                     }</td>
                                 </tr>
