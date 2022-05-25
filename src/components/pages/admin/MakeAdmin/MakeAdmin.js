@@ -88,10 +88,8 @@ const MakeAdmin = () => {
                                     <td>{u.email}</td>
                                     <td className='text-center'>{u.role}</td>
                                     <td className='text-center'>{u.role === 'Admin' ?
-                                        // <button disabled={u.email === user.email} onClick={() => handleRemoveAdmin(u.email)} className='btn btn-outline btn-error btn-xs'>Remove Admin</button>
                                         <label disabled={u.email === user.email} onClick={() => setConfirm(u)} htmlFor="remove-admin" className="btn btn-outline btn-error btn-xs">Remove Admin</label>
                                         :
-                                        // <button disabled={u.role === 'Admin'} onClick={() => handleAdmin(u.email)} className='btn btn-outline btn-success btn-xs'>Make Admin</button>
                                         <label disabled={u.role === 'Admin'} onClick={() => setConfirm(u)} htmlFor="make-admin" className="btn btn-outline btn-error btn-xs">Make Admin</label>
 
                                     }</td>
