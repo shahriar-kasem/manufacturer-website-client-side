@@ -39,7 +39,7 @@ const Dashboard = () => {
                             admin && <li><Link className='hover:text-orange-500 hover:bordered' to='addBlog'>Add Blog</Link></li>
                         }
                         {
-                            admin && <li><Link className='hover:text-orange-500 hover:bordered' to='makeAdmin'>Admin Panel</Link></li>
+                            admin && <li><Link className='hover:text-orange-500 hover:bordered' to='makeAdmin'>Make Admin</Link></li>
                         }
                         {
                             admin && <li><Link className='hover:text-orange-500 hover:bordered' to='manageProducts'>Manage Products</Link></li>

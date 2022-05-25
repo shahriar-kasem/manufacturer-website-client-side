@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import useProducts from '../../../../hooks/useProducts';
 import Loading from '../../../shared/Loading/Loading';
 
 const ManageProducts = () => {
     const { products, isLoading, refetch } = useProducts();
-    // console.log(products)
+    const [confirm, setConfirm] = useState(null);
 
     const handleProductDelete = (id) => {
-        const proceed = window.confirm('Are you sure you want to this product?');
-        if(proceed){
-            fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`http://localhost:5000/product/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `${localStorage.getItem('accessTokenST')}`,
@@ -21,12 +19,12 @@ const ManageProducts = () => {
                 if (res.status === 200) {
                     toast.success('Product deleted successfully!')
                     refetch()
+                    setConfirm(null)
                 }
             })
-        }
     }
 
-    if(isLoading){
+    if (isLoading) {
         return <Loading></Loading>
     }
 
@@ -54,11 +52,28 @@ const ManageProducts = () => {
                                     <td className='text-center'>{product.availableQuantity}</td>
                                     <td className='text-center'>{product.minimumOrderQuantity}</td>
                                     <td className='text-center'>{product.price}</td>
-                                    <td><button onClick={() => handleProductDelete(product._id)} className="btn btn-outline btn-error btn-xs">Delete</button></td>
+                                    <td>
+                                        <label onClick={() => setConfirm(product)} htmlFor="delete-product" className="btn btn-outline btn-error btn-xs">Delete</label>
+                                    </td>
                                 </tr>
                             </tbody>)
                     }
                 </table>
+            </div>
+            <input type="checkbox" id="delete-product" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box w-full md:w-6/12 max-w-5xl">
+                    <h3 className="font-bold text-lg text-red-500">Are you sure you want to delete "{confirm?.name}"?</h3>
+                    <p></p>
+                    <div className='flex justify-end'>
+                        <div onClick={() => handleProductDelete(confirm?._id)} className="modal-action">
+                            <label htmlFor="delete-product" className="btn btn-outline btn-error btn-xs">Yes</label>
+                        </div>
+                        <div className="modal-action ml-3">
+                            <label htmlFor="delete-product" className="btn btn-outline btn-xs">Cancel</label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     );

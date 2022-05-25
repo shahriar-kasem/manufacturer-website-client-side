@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { signOut } from 'firebase/auth';
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -12,10 +12,9 @@ const MakeAdmin = () => {
     const [user] = useAuthState(auth);
     const { users, isLoading, refetch } = useUsers();
     const navigate = useNavigate();
+    const [confirm, setConfirm] = useState(null);
 
     const handleAdmin = (email) => {
-        const proceed = window.confirm('Are you sure you want to make this user an admin?');
-       if(proceed){
         axios.patch(`http://localhost:5000/user/admin?email=${email}`,
         { role: 'Admin' },
         {
@@ -26,6 +25,7 @@ const MakeAdmin = () => {
     ).then(res => {
         if (res.status === 200) {
             toast.success('Successfully made an admin!');
+            setConfirm(null);
             refetch();
         }
     }).catch((error) => {
@@ -37,33 +37,30 @@ const MakeAdmin = () => {
             navigate('/');
         }
     })
-       }
     }
     const handleRemoveAdmin = (email) => {
-        const proceed = window.confirm("Are you sure you want to remove this user's admin status?");
-        if(proceed){
-            axios.patch(`http://localhost:5000/user/admin?email=${email}`,
-            { role: '' },
-            {
-                headers: {
-                    authorization: `${localStorage.getItem('accessTokenST')}`
-                },
+        axios.patch(`http://localhost:5000/user/admin?email=${email}`,
+        { role: '' },
+        {
+            headers: {
+                authorization: `${localStorage.getItem('accessTokenST')}`
             },
-        ).then(res => {
-            if (res.status === 200) {
-                toast('Successfully removed admin status!');
-                refetch();
-            }
-        }).catch((error) => {
-            toast.error('Something went wrong! Please try again later');
+        },
+    ).then(res => {
+        if (res.status === 200) {
+            toast('Successfully removed admin status!');
+            setConfirm(null);
             refetch();
-            if (error) {
-                signOut(auth);
-                localStorage.removeItem('accessTokenST');
-                navigate('/');
-            }
-        })
         }
+    }).catch((error) => {
+        toast.error('Something went wrong! Please try again later');
+        refetch();
+        if (error) {
+            signOut(auth);
+            localStorage.removeItem('accessTokenST');
+            navigate('/');
+        }
+    })
     }
 
     if (isLoading) {
@@ -91,9 +88,11 @@ const MakeAdmin = () => {
                                     <td>{u.email}</td>
                                     <td className='text-center'>{u.role}</td>
                                     <td className='text-center'>{u.role === 'Admin' ?
-                                        <button disabled={u.email === user.email} onClick={() => handleRemoveAdmin(u.email)} className='btn btn-outline btn-error btn-xs'>Remove Admin</button>
+                                        // <button disabled={u.email === user.email} onClick={() => handleRemoveAdmin(u.email)} className='btn btn-outline btn-error btn-xs'>Remove Admin</button>
+                                        <label disabled={u.email === user.email} onClick={() => setConfirm(u)} htmlFor="remove-admin" className="btn btn-outline btn-error btn-xs">Remove Admin</label>
                                         :
-                                        <button disabled={u.role === 'Admin'} onClick={() => handleAdmin(u.email)} className='btn btn-outline btn-success btn-xs'>Make Admin</button>
+                                        // <button disabled={u.role === 'Admin'} onClick={() => handleAdmin(u.email)} className='btn btn-outline btn-success btn-xs'>Make Admin</button>
+                                        <label disabled={u.role === 'Admin'} onClick={() => setConfirm(u)} htmlFor="make-admin" className="btn btn-outline btn-error btn-xs">Make Admin</label>
 
                                     }</td>
                                 </tr>
@@ -101,6 +100,36 @@ const MakeAdmin = () => {
                         )
                     }
                 </table>
+            </div>
+            <input type="checkbox" id="remove-admin" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box w-full md:w-6/12 max-w-5xl">
+                    <h3 className="font-bold text-lg text-red-500">Are you sure you want to remove "{confirm?.email}'s" admin status?</h3>
+                    <p></p>
+                    <div className='flex justify-end'>
+                        <div onClick={() => handleRemoveAdmin(confirm?.email)} className="modal-action">
+                            <label htmlFor="remove-admin" className="btn btn-outline btn-error btn-xs">Yes</label>
+                        </div>
+                        <div className="modal-action ml-3">
+                            <label htmlFor="remove-admin" className="btn btn-outline btn-xs">Cancel</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="checkbox" id="make-admin" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box w-full md:w-6/12 max-w-5xl">
+                    <h3 className="font-bold text-lg text-red-500">Are you sure you want to make "{confirm?.email}" an admin?</h3>
+                    <p></p>
+                    <div className='flex justify-end'>
+                        <div onClick={() => handleAdmin(confirm?.email)} className="modal-action">
+                            <label htmlFor="make-admin" className="btn btn-outline btn-error btn-xs">Yes</label>
+                        </div>
+                        <div className="modal-action ml-3">
+                            <label htmlFor="make-admin" className="btn btn-outline btn-xs">Cancel</label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     );
