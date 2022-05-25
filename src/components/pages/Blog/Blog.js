@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
@@ -10,12 +10,11 @@ const Blog = () => {
     const [user] = useAuthState(auth);
     const [admin] = useAdmin(user);
     const navigate = useNavigate();
+    const [confirm, setConfirm] = useState(null);
     const { data: blogs, refetch } = useQuery('blogsData', () => fetch(`http://localhost:5000/blogs`).then(res => res.json()))
 
     const handleBlogDelete = (id) => {
-        const proceed = window.confirm('Are you sure you want to delete this blog?');
-        if(proceed){
-            fetch(`http://localhost:5000/blog/${id}`, {
+        fetch(`http://localhost:5000/blog/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `${localStorage.getItem('accessTokenST')}`,
@@ -26,6 +25,7 @@ const Blog = () => {
                 if (res.status) {
                    if(res.status === 200){
                     toast.success('Product deleted successfully!')
+                    setConfirm(null)
                     refetch()
                    }
                    else{
@@ -34,7 +34,6 @@ const Blog = () => {
                    }
                 }
             })
-        }
     }
 
     return (
@@ -52,13 +51,29 @@ const Blog = () => {
                                 </div>
                                 {
                                     admin && <div className="card-actions justify-end">
-                                        <button onClick={()=> handleBlogDelete(blog._id)} className="btn btn-xs btn-outline btn-error">Delete Blog</button>
+                                        {/* <button onClick={()=> handleBlogDelete(blog._id)} className="btn btn-xs btn-outline btn-error">Delete Blog</button> */}
+                                        <label onClick={() => setConfirm(blog)} htmlFor="delete-blog" className="btn btn-outline btn-error btn-xs">Delete Blog</label>
                                     </div>
                                 }
                             </div>
                         </div>
                     )
                 }
+            </div>
+            <input type="checkbox" id="delete-blog" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box w-full md:w-6/12 max-w-5xl">
+                    <h3 className="font-bold text-lg text-red-500">Are you sure you want to delete this blog?</h3>
+                    <p></p>
+                    <div className='flex justify-end'>
+                        <div onClick={() => handleBlogDelete(confirm?._id)} className="modal-action">
+                            <label htmlFor="delete-blog" className="btn btn-outline btn-error btn-xs">Yes</label>
+                        </div>
+                        <div className="modal-action ml-3">
+                            <label htmlFor="delete-blog" className="btn btn-outline btn-xs">Cancel</label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     );

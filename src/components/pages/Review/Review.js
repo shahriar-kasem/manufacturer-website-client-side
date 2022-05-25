@@ -32,11 +32,6 @@ const Review = ({ review }) => {
                             {
                                 ratings >= 5 && <li className='mask mask-star-2 bg-orange-400'></li>
                             }
-                            {/* <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" /> */}
                         </div>
                     </div>
                 </div>

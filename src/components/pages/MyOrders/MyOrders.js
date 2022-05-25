@@ -62,7 +62,7 @@ const MyOrders = () => {
                                         {
                                             order.purchaseStatus !== 'Shipped'
                                                 ?
-                                                <label onClick={() => setConfirm(order)} htmlFor="cancel-order" className="btn btn-outline btn-error btn-xs">Cancel Order</label>
+                                                <label disabled={order.paymentStatus === 'paid'} onClick={() => setConfirm(order)} htmlFor="cancel-order" className="btn btn-outline btn-error btn-xs">Cancel Order</label>
                                                 :
                                                 <button className='btn btn-xs btn-error btn-outline btn-disabled'>Order Confirmed</button>
                                         }</td>
