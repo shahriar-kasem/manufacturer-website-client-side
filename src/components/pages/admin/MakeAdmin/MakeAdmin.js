@@ -14,30 +14,35 @@ const MakeAdmin = () => {
     const navigate = useNavigate();
 
     const handleAdmin = (email) => {
+        const proceed = window.confirm('Are you sure you want to make this user an admin?');
+       if(proceed){
         axios.patch(`http://localhost:5000/user/admin?email=${email}`,
-            { role: 'Admin' },
-            {
-                headers: {
-                    authorization: `${localStorage.getItem('accessTokenST')}`
-                },
+        { role: 'Admin' },
+        {
+            headers: {
+                authorization: `${localStorage.getItem('accessTokenST')}`
             },
-        ).then(res => {
-            if (res.status === 200) {
-                toast.success('Successfully made an admin!');
-                refetch();
-            }
-        }).catch((error) => {
-            toast.error('Something went wrong! Please try again later');
+        },
+    ).then(res => {
+        if (res.status === 200) {
+            toast.success('Successfully made an admin!');
             refetch();
-            if (error) {
-                signOut(auth);
-                localStorage.removeItem('accessTokenST');
-                navigate('/');
-            }
-        })
+        }
+    }).catch((error) => {
+        toast.error('Something went wrong! Please try again later');
+        refetch();
+        if (error) {
+            signOut(auth);
+            localStorage.removeItem('accessTokenST');
+            navigate('/');
+        }
+    })
+       }
     }
     const handleRemoveAdmin = (email) => {
-        axios.patch(`http://localhost:5000/user/admin?email=${email}`,
+        const proceed = window.confirm("Are you sure you want to remove this user's admin status?");
+        if(proceed){
+            axios.patch(`http://localhost:5000/user/admin?email=${email}`,
             { role: '' },
             {
                 headers: {
@@ -58,6 +63,7 @@ const MakeAdmin = () => {
                 navigate('/');
             }
         })
+        }
     }
 
     if (isLoading) {

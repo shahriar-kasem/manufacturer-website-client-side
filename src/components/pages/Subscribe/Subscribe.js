@@ -90,28 +90,28 @@ const Subscribe = () => {
                         <div>
                             <h4 className='font-semibold text-sm'>COUNTRY OF RESIDENCE</h4>
                             <div className='flex flex-col items-start'>
-                                <div class="form-control">
-                                    <label class="label cursor-pointer">
-                                        <input onClick={() => setCountry('United States')} type="radio" name="radio-6" class="radio checked:bg-blue-500" />
-                                        <span class="label-text ml-5">United States</span>
+                                <div className="form-control">
+                                    <label className="label cursor-pointer">
+                                        <input onClick={() => setCountry('United States')} type="radio" name="radio-6" className="radio checked:bg-blue-500" />
+                                        <span className="label-text ml-5">United States</span>
                                     </label>
                                 </div>
-                                <div class="form-control">
-                                    <label class="label cursor-pointer">
-                                        <input onClick={() => setCountry('United Kingdom')} type="radio" name="radio-6" class="radio checked:bg-blue-500" />
-                                        <span class="label-text ml-5">United Kingdom</span>
+                                <div className="form-control">
+                                    <label className="label cursor-pointer">
+                                        <input onClick={() => setCountry('United Kingdom')} type="radio" name="radio-6" className="radio checked:bg-blue-500" />
+                                        <span className="label-text ml-5">United Kingdom</span>
                                     </label>
                                 </div>
-                                <div class="form-control">
-                                    <label class="label cursor-pointer">
-                                        <input onClick={() => setCountry('Europe')} type="radio" name="radio-6" class="radio checked:bg-blue-500" />
-                                        <span class="label-text ml-5">Europe</span>
+                                <div className="form-control">
+                                    <label className="label cursor-pointer">
+                                        <input onClick={() => setCountry('Europe')} type="radio" name="radio-6" className="radio checked:bg-blue-500" />
+                                        <span className="label-text ml-5">Europe</span>
                                     </label>
                                 </div>
-                                <div class="form-control">
-                                    <label class="label cursor-pointer">
-                                        <input onClick={() => setCountry('International')} type="radio" name="radio-6" class="radio checked:bg-blue-500" />
-                                        <span class="label-text ml-5">International</span>
+                                <div className="form-control">
+                                    <label className="label cursor-pointer">
+                                        <input onClick={() => setCountry('International')} type="radio" name="radio-6" className="radio checked:bg-blue-500" />
+                                        <span className="label-text ml-5">International</span>
                                     </label>
                                 </div>
                             </div>

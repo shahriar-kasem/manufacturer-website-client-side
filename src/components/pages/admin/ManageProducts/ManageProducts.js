@@ -8,7 +8,7 @@ const ManageProducts = () => {
     // console.log(products)
 
     const handleProductDelete = (id) => {
-        const proceed = window.confirm('Are you sure you want to delete this blog?');
+        const proceed = window.confirm('Are you sure you want to this product?');
         if(proceed){
             fetch(`http://localhost:5000/product/${id}`, {
             method: 'DELETE',

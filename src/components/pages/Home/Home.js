@@ -48,6 +48,7 @@ const Home = () => {
                 </div>
             </section>
             <BusinessDetails></BusinessDetails>
+            <SocialResponsibility></SocialResponsibility>
             <section className='md:mt-5 lg:w-11/12 md:w-11/12 mx-auto'>
                 <div>
                     <div className='flex justify-between items-center mx-1 md:mx-5'>
@@ -77,7 +78,6 @@ const Home = () => {
                     <div className="grid flex-grow card rounded-box place-items-end"><button onClick={() => navigate('/reviews')} className="btn btn-outline mr-3 md:mr-5 lg:mr-10">See all reviews <ArrowRightIcon className="h-5 w-5 ml-1"></ArrowRightIcon></button></div>
                 </div>
             </section>
-            <SocialResponsibility></SocialResponsibility>
             <Subscribe></Subscribe>
             <Footer></Footer>
         </section>

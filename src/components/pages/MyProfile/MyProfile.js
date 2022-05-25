@@ -86,72 +86,72 @@ const MyProfile = () => {
     return (
         <section>
             <h1 className='text-center text-2xl text-purple-500 font-bold my-2'>My Profile</h1>
-            <div class="card bg-base-100 shadow-xl image-full">
+            <div className="card bg-base-100 shadow-xl image-full">
                 <figure><img src={Ocean} alt="Shoes" /></figure>
-                <div class="card-body flex items-center">
-                    <div class="card w-11/12 bg-base-100 shadow-xl">
-                        <div class="card-body text-black">
-                            <h2 class="card-title">                   <button disabled={editProfile} onClick={() => setEditProfile(true)} class="btn btn-xs btn-outline btn-info">Edit info</button></h2>
+                <div className="card-body flex items-center">
+                    <div className="card w-11/12 bg-base-100 shadow-xl">
+                        <div className="card-body text-black">
+                            <h2 className="card-title">                   <button disabled={editProfile} onClick={() => setEditProfile(true)} className="btn btn-xs btn-outline btn-info">Edit info</button></h2>
                             <form onSubmit={updateProfileInfo}>
-                                <div onChange={handleName} class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Full Name</span>
+                                <div onChange={handleName} className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Full Name</span>
                                     </label>
                                     <input
                                         readOnly={!editProfile}
                                         value={name || ''}
                                         name='name'
-                                        type="text" placeholder="Type here" class="input input-bordered input-primary w-full max-w-xs"
+                                        type="text" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs"
                                         required
                                     />
                                 </div>
-                                <div class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Email: <small>You can't change your email</small></span>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Email: <small>You can't change your email</small></span>
                                     </label>
                                     <input
                                         readOnly
                                         value={user?.email}
                                         name='email'
-                                        type="email" placeholder="Type here" class="input input-bordered input-primary w-full max-w-xs" />
+                                        type="email" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" />
                                 </div>
-                                <div onChange={handleCity} class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Location/City</span>
+                                <div onChange={handleCity} className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Location/City</span>
                                     </label>
                                     <input
                                         readOnly={!editProfile}
                                         value={city || ''}
                                         type="text"
                                         name="city"
-                                        placeholder="Type here" class="input input-bordered input-primary w-full max-w-xs" required
+                                        placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" required
                                     />
                                 </div>
-                                <div onChange={handleEducation} class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Education</span>
+                                <div onChange={handleEducation} className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Education</span>
                                     </label>
                                     <input
                                         readOnly={!editProfile}
                                         value={education || ''}
                                         type="text" placeholder="Type here"
-                                        name="education" class="input input-bordered input-primary w-full max-w-xs"
+                                        name="education" className="input input-bordered input-primary w-full max-w-xs"
                                         required
                                     />
                                 </div>
-                                <div onChange={handlePhone} class="form-control w-full max-w-xs">
-                                    <label class="label">
-                                        <span class="label-text">Phone</span>
+                                <div onChange={handlePhone} className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Phone</span>
                                     </label>
                                     <input
                                         readOnly={!editProfile}
                                         value={phone || ''}
                                         name='phone'
-                                        type="number" placeholder="Type here" class="input input-bordered input-primary w-full max-w-xs" required
+                                        type="number" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" required
                                     />
                                 </div>
-                                <div class="card-actions justify-start mt-3">
-                                    <input disabled={!editProfile} class="btn btn-outline btn-success" type="submit" value="update" />
+                                <div className="card-actions justify-start mt-3">
+                                    <input disabled={!editProfile} className="btn btn-outline btn-success" type="submit" value="update" />
                                 </div>
                             </form>
                         </div>
