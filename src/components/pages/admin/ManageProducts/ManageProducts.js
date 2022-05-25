@@ -18,7 +18,7 @@ const ManageProducts = () => {
         })
             .then(res => {
                 res.json()
-                if (res.status) {
+                if (res.status === 200) {
                     toast.success('Product deleted successfully!')
                     refetch()
                 }
