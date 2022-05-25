@@ -9,6 +9,7 @@ module.exports = {
         'banner-background': "url('/src/images/background/banner-bg.jpg')",
         'ocean-background': "url('/src/images/background/Ocean.png')",
         'business-summary': "url('/src/images/background/istockphoto-1025744818-170667a.jpg')",
+        'beach-background': "url('/src/images/background/Beach.png')",
       }
     },
   },

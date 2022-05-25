@@ -6,7 +6,7 @@ const Footer = () => {
 
     return (
         <section>
-            <footer className="footer flex flex-col md:flex-row justify-between items-center p-4 bg-neutral text-neutral-content md:px-10 lg:px-20">
+            <footer className="footer flex flex-col md:flex-row justify-between items-center p-4 bg-neutral text-neutral-content md:px-10 lg:px-20 py-5 md:py-10 lg:py-15">
                 <div className="items-center grid-flow-col">
                     <p>Copyright © {currentYear} - All right reserved</p>
                 </div>

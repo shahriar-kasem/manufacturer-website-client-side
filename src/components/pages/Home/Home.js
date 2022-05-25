@@ -9,6 +9,8 @@ import Review from '../Review/Review';
 import Tool from '../Tool/Tool';
 import reviewLogo from '../../../images/logo/reviewLogo.png';
 import { ArrowRightIcon } from '@heroicons/react/solid'
+import Subscribe from '../Subscribe/Subscribe';
+import SocialResponsibility from '../SocialResponsibility/SocialResponsibility';
 
 const Home = () => {
     const { products } = useProducts();
@@ -17,7 +19,7 @@ const Home = () => {
     const [homeProduct, setHomeProduct] = useState();
     const [homeReview, setHomeReview] = useState();
     useEffect(() => {
-        const homeProductLength = products?.length - 3;
+        const homeProductLength = products?.length - 6;
         setHomeProduct(homeProductLength);
     }, [products])
     useEffect(() => {
@@ -75,6 +77,8 @@ const Home = () => {
                     <div className="grid flex-grow card rounded-box place-items-end"><button onClick={() => navigate('/reviews')} className="btn btn-outline mr-3 md:mr-5 lg:mr-10">See all reviews <ArrowRightIcon className="h-5 w-5 ml-1"></ArrowRightIcon></button></div>
                 </div>
             </section>
+            <SocialResponsibility></SocialResponsibility>
+            <Subscribe></Subscribe>
             <Footer></Footer>
         </section>
     );

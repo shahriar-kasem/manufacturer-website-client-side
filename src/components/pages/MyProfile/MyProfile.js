@@ -154,7 +154,6 @@ const MyProfile = () => {
                                     <input disabled={!editProfile} class="btn btn-outline btn-success" type="submit" value="update" />
                                 </div>
                             </form>
-                            <p>If a dog chews shoes whose shoes does he choose?</p>
                         </div>
                     </div>
                 </div>

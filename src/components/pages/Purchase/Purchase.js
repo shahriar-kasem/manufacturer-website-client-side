@@ -20,7 +20,7 @@ const Purchase = () => {
         .then(res=>res.json())
         .then(data=>setTool(data))
     },[id])
-    const [defaultQuantity, setDefaultQuantity] = useState('');
+    const [defaultQuantity, setDefaultQuantity] = useState();
 
     const [minimum, setMinimum] = useState();
     const [maximum, setMaximum] = useState();
