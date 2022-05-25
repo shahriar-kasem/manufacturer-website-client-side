@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import useUserOrder from '../../../hooks/useUserOrder';
@@ -7,6 +8,7 @@ import useUserOrder from '../../../hooks/useUserOrder';
 const MyOrders = () => {
     const [user] = useAuthState(auth);
     const {orders, refetch} = useUserOrder(user);
+    const navigate = useNavigate();
 
     const cancelOrder = (id) => {
         const proceed = window.confirm('Are you sure you want to cancel this order?');
@@ -27,6 +29,10 @@ const MyOrders = () => {
         }
     }
 
+    const handlePay = (id) => {
+        navigate(`/payment/${id}`)
+    }
+
     return (
        <section>
             <h1 className='text-center text-2xl text-purple-500 font-bold my-2'>Here is your order list</h1>
@@ -36,8 +42,8 @@ const MyOrders = () => {
                         <tr>
                             <th></th>
                             <th>Email</th>
-                            <th>Order ID</th>
-                            <th>Order Transaction ID</th>
+                            <th className='text-center'>Order ID</th>
+                            <th className='text-center'>Order Transaction ID</th>
                             <th className='text-center'>Purchase Status</th>
                             <th className='text-center'>Order</th>
                             <th className='text-center'>Payment</th>
@@ -50,7 +56,7 @@ const MyOrders = () => {
                         <tr>
                             <th>{index +1}</th>
                             <td>{order.customerEmail}</td>
-                            <td></td>
+                            <td>{order._id}</td>
                             <td>{order.orderId}</td>
                             <td className='text-center'>{order.purchaseStatus}</td>
                             <td className='text-center'>
@@ -60,7 +66,7 @@ const MyOrders = () => {
                                     :
                                     <button className='btn btn-xs btn-error btn-outline btn-disabled'>Order Confirmed</button>
                                 }</td>
-                            <td className='text-center'><button className='btn btn-xs btn-success btn-outline'>Pay</button></td>
+                            <td className='text-center'><button onClick={()=>handlePay(order._id)} className='btn btn-xs btn-success btn-outline'>Pay</button></td>
                         </tr>
                     </tbody>
                     )

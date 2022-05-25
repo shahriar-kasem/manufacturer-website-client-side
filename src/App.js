@@ -22,6 +22,7 @@ import Tools from './components/pages/Tools/Tools';
 import Purchase from './components/pages/Purchase/Purchase';
 import RequireAdmin from './components/pages/RequireAdmin/RequireAdmin';
 import AddBlog from './components/pages/admin/AddBlog/AddBlog';
+import Payment from './components/pages/Payment/Payment';
 
 function App() {
   return (
@@ -71,6 +72,11 @@ function App() {
           <Route path='/purchase/:id' element={
             <RequireAuth>
               <Purchase></Purchase>
+            </RequireAuth>
+          }></Route>
+          <Route path='/payment/:id' element={
+            <RequireAuth>
+              <Payment></Payment>
             </RequireAuth>
           }></Route>
           <Route path='/blog' element={<Blog></Blog>}></Route>

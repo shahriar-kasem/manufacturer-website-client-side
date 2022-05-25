@@ -55,7 +55,8 @@ const Purchase = () => {
             }).then(res => {
                 if (res.status === 200) {
                     toast.success('Your order placed successfully. Please pay to confirm your purchase');
-                    navigate('/');
+                    // console.log(res.data.insertedId)
+                    navigate(`/payment/${res.data.insertedId}`);
                 }
             }).catch((error) => {
                 const errorMessage = error.response.data.message;
