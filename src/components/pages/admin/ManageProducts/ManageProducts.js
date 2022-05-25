@@ -8,7 +8,9 @@ const ManageProducts = () => {
     // console.log(products)
 
     const handleProductDelete = (id) => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        const proceed = window.confirm('Are you sure you want to delete this blog?');
+        if(proceed){
+            fetch(`http://localhost:5000/product/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `${localStorage.getItem('accessTokenST')}`,
@@ -21,6 +23,7 @@ const ManageProducts = () => {
                     refetch()
                 }
             })
+        }
     }
 
     if(isLoading){
