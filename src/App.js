@@ -21,6 +21,7 @@ import ManageProducts from './components/pages/admin/ManageProducts/ManageProduc
 import Tools from './components/pages/Tools/Tools';
 import Purchase from './components/pages/Purchase/Purchase';
 import RequireAdmin from './components/pages/RequireAdmin/RequireAdmin';
+import AddBlog from './components/pages/admin/AddBlog/AddBlog';
 
 function App() {
   return (
@@ -48,6 +49,11 @@ function App() {
             <Route path='addProduct' element={
               <RequireAdmin>
                 <AddProduct></AddProduct>
+              </RequireAdmin>
+            }></Route>
+            <Route path='addBlog' element={
+              <RequireAdmin>
+                <AddBlog></AddBlog>
               </RequireAdmin>
             }></Route>
             <Route path='makeAdmin' element={

@@ -29,15 +29,18 @@ const Dashboard = () => {
                         <li><Link className='hover:text-orange-500 hover:bordered' to='/dashboard'>My Profile</Link></li>
                         <li><Link className='hover:text-orange-500 hover:bordered' to='myOrders'>My Orders</Link></li>
                         <li><Link className='hover:text-orange-500 hover:bordered' to='addReview'>Add A Review</Link></li>
-                       {
-                           admin &&  <li><Link className='hover:text-orange-500 hover:bordered' to='manageOrders'>Manage All Orders</Link></li>
-                       }
-                       {
-                           admin &&  <li><Link className='hover:text-orange-500 hover:bordered' to='addProduct'>Add A Product</Link></li>
-                       }
-                       {
-                           admin &&  <li><Link className='hover:text-orange-500 hover:bordered' to='makeAdmin'>Admin Panel</Link></li>
-                       }
+                        {
+                            admin && <li><Link className='hover:text-orange-500 hover:bordered' to='manageOrders'>Manage All Orders</Link></li>
+                        }
+                        {
+                            admin && <li><Link className='hover:text-orange-500 hover:bordered' to='addProduct'>Add A Product</Link></li>
+                        }
+                        {
+                            admin && <li><Link className='hover:text-orange-500 hover:bordered' to='addBlog'>Add Blog</Link></li>
+                        }
+                        {
+                            admin && <li><Link className='hover:text-orange-500 hover:bordered' to='makeAdmin'>Admin Panel</Link></li>
+                        }
                         {
                             admin && <li><Link className='hover:text-orange-500 hover:bordered' to='manageProducts'>Manage Products</Link></li>
                         }
