@@ -18,7 +18,7 @@ const Navbar = () => {
         {
             user && <li className='hover:text-purple-500 hover:bordered'><Link to='/dashboard'>Dashboard</Link></li>
         }
-        <li className='hover:text-purple-500 hover:bordered'><Link to='/blog'>Blog</Link></li>
+        <li className='hover:text-purple-500 hover:bordered'><Link to='/blog'>Blogs</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/reviews'>Reviews</Link></li>
         <li className='hover:text-purple-500 hover:bordered'><Link to='/myPortfolio'>My Portfolio</Link></li>
         {

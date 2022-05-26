@@ -2,7 +2,7 @@ import React from 'react';
 
 const SocialResponsibility = () => {
     return (
-        <section className='bg-slate-100 py-5 lg:py-10 px-5 md:px-10 lg:px-15'>
+        <section className='bg-slate-100 py-5 lg:py-10 px-5 md:px-10 lg:px-15 mb-4'>
             <h2 className='text-center mb-3 md:mb-6 lg:mb-4 font-bold text-3xl text-blue-500'><i>Social Responsibility</i></h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 <div className='flex flex-col items-center'>
