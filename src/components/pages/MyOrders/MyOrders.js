@@ -66,7 +66,14 @@ const MyOrders = () => {
                                                 :
                                                 <button className='btn btn-xs btn-error btn-outline btn-disabled'>Order Confirmed</button>
                                         }</td>
-                                    <td className='text-center'><button onClick={() => handlePay(order._id)} className='btn btn-xs btn-success btn-outline'>Pay</button></td>
+                                    <td className='text-center'>
+                                        {
+                                            order.paymentStatus === 'paid' ?
+                                            <button className='btn btn-xs btn-success btn-outline btn-disabled'>Paid</button>
+                                            :
+                                            <button onClick={() => handlePay(order._id)} className='btn btn-xs btn-success btn-outline'>Pay</button>
+                                        }
+                                        </td>
                                 </tr>
                             </tbody>
                         )
