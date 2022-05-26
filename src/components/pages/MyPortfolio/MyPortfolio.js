@@ -69,7 +69,7 @@ const MyPortfolio = () => {
                     <li>Bootstrap</li>
                     <li>Tailwind</li>
                 </ul>
-                <p className='my-5 mx-10 text-lg font-semibold text-gray-400'><i>I'm hungry to Learn. This is a short list of technologies i've learned till now. I'm still learning and exploring new technologies. As a web developer i'm always try to stay updated.</i></p>
+                <p className='my-5 mx-10 text-lg font-semibold text-gray-400'><i>I'm hungry to Learn. This is a short list of technologies i've learned till now. I'm still learning and exploring new technologies. As a web developer i always try to stay updated.</i></p>
             </div>
             <div className='mt-10 ml-2 md:ml-10'>
                 <h2 className='text-2xl text-blue-500 font-bold mb-6 text-center'><i>Some of my project details are below</i> - </h2>
