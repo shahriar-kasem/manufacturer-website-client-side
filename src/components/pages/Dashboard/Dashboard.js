@@ -27,8 +27,12 @@ const Dashboard = () => {
                     <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
                         <li><Link className='hover:text-orange-500 hover:bordered' to='/dashboard'>My Profile</Link></li>
-                        <li><Link className='hover:text-orange-500 hover:bordered' to='myOrders'>My Orders</Link></li>
-                        <li><Link className='hover:text-orange-500 hover:bordered' to='addReview'>Add A Review</Link></li>
+                        {
+                            !admin && <li><Link className='hover:text-orange-500 hover:bordered' to='myOrders'>My Orders</Link></li>
+                        }
+                        {
+                            !admin && <li><Link className='hover:text-orange-500 hover:bordered' to='addReview'>Add A Review</Link></li>
+                        }
                         {
                             admin && <li><Link className='hover:text-orange-500 hover:bordered' to='manageOrders'>Manage All Orders</Link></li>
                         }
