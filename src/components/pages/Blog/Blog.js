@@ -11,10 +11,10 @@ const Blog = () => {
     const [admin] = useAdmin(user);
     const navigate = useNavigate();
     const [confirm, setConfirm] = useState(null);
-    const { data: blogs, refetch } = useQuery('blogsData', () => fetch(`http://localhost:5000/blogs`).then(res => res.json()))
+    const { data: blogs, refetch } = useQuery('blogsData', () => fetch(`https://gentle-spire-70229.herokuapp.com/blogs`).then(res => res.json()))
 
     const handleBlogDelete = (id) => {
-        fetch(`http://localhost:5000/blog/${id}`, {
+        fetch(`https://gentle-spire-70229.herokuapp.com/blog/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `${localStorage.getItem('accessTokenST')}`,

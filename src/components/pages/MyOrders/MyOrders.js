@@ -12,7 +12,7 @@ const MyOrders = () => {
     const [confirm, setConfirm] = useState(null);
 
     const cancelOrder = (id) => {
-        fetch(`http://localhost:5000/order/${id}`, {
+        fetch(`https://gentle-spire-70229.herokuapp.com/order/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `${localStorage.getItem('accessTokenST')}`,
@@ -56,7 +56,7 @@ const MyOrders = () => {
                                     <th>{index + 1}</th>
                                     <td>{order.customerEmail}</td>
                                     <td>{order._id}</td>
-                                    <td>{order.orderId}</td>
+                                    <td>{order.transactionId}</td>
                                     <td className='text-center'>{order.purchaseStatus}</td>
                                     <td className='text-center'>
                                         {

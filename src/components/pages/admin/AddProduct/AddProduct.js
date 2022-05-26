@@ -26,7 +26,7 @@ const AddProduct = () => {
             headers: {
                 'authorization': `${localStorage.getItem('accessTokenST')}`
             },
-            url: `http://localhost:5000/add/product`,
+            url: `https://gentle-spire-70229.herokuapp.com/add/product`,
             data: newProduct,
         }).then(res=>{
             if(res.status === 200){

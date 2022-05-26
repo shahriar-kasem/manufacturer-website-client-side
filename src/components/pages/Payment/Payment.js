@@ -10,7 +10,7 @@ const stripePromise = loadStripe('pk_test_51L1lxuGY0gr9tAJIZaTi6gjRXFiQIssBXsgr6
 
 const Payment = () => {
     const { id } = useParams();
-    const { data: order, isLoading, refetch } = useQuery(['order', id], () => fetch(`http://localhost:5000/order/${id}`, {
+    const { data: order, isLoading, refetch } = useQuery(['order', id], () => fetch(`https://gentle-spire-70229.herokuapp.com/order/${id}`, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',

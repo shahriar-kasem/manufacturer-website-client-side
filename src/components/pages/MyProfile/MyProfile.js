@@ -14,7 +14,7 @@ const MyProfile = () => {
     const [updateProfile] = useUpdateProfile(auth);
     const [name, setName] = useState(user?.displayName);
     const email = user?.email;
-    const { data: userData, refetch } = useQuery('userProfile', () => fetch(`http://localhost:5000/user/profile?email=${email}`, {
+    const { data: userData, refetch } = useQuery('userProfile', () => fetch(`https://gentle-spire-70229.herokuapp.com/user/profile?email=${email}`, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
@@ -43,7 +43,7 @@ const MyProfile = () => {
         const phone = event.target.phone.value;
         const newUserData = {education, city, phone};
         await updateProfile({displayName: newName});
-        axios.patch(`http://localhost:5000/user/profile?email=${email}`,
+        axios.patch(`https://gentle-spire-70229.herokuapp.com/user/profile?email=${email}`,
             newUserData,
             {
                 headers: {

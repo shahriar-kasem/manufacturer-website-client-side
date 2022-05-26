@@ -3,7 +3,7 @@ import Loading from "../components/shared/Loading/Loading";
 
 
 const useReviews = () => {
-    const {data: reviews, isLoading, refetch} = useQuery('reviewsData', () => fetch(`http://localhost:5000/reviews`).then(res=>res.json()
+    const {data: reviews, isLoading, refetch} = useQuery('reviewsData', () => fetch(`https://gentle-spire-70229.herokuapp.com/reviews`).then(res=>res.json()
     )
     )
 

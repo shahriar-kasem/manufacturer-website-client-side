@@ -16,7 +16,7 @@ const Purchase = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [tool, setTool] = useState([]);
     useEffect(()=>{
-        fetch(`http://localhost:5000/product/${id}`)
+        fetch(`https://gentle-spire-70229.herokuapp.com/product/${id}`)
         .then(res=>res.json())
         .then(data=>setTool(data))
     },[id])
@@ -50,7 +50,7 @@ const Purchase = () => {
                 headers: {
                     authorization: `${localStorage.getItem('accessTokenST')}`
                 },
-                url: `http://localhost:5000/order`,
+                url: `https://gentle-spire-70229.herokuapp.com/order`,
                 data: purchase,
             }).then(res => {
                 if (res.status === 200) {

@@ -2,7 +2,7 @@ import { useQuery } from "react-query"
 
 const useUserOrder = (user) => {
     const email = user.email;
-    const {data: orders, refetch} = useQuery('userOrderData', () => fetch(`http://localhost:5000/orders/${email}`, {
+    const {data: orders, refetch} = useQuery('userOrderData', () => fetch(`https://gentle-spire-70229.herokuapp.com/orders/${email}`, {
         method: 'GET',
             headers: {
                 'content-type': 'application/json',

@@ -8,7 +8,7 @@ const ManageProducts = () => {
     const [confirm, setConfirm] = useState(null);
 
     const handleProductDelete = (id) => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://gentle-spire-70229.herokuapp.com/product/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `${localStorage.getItem('accessTokenST')}`,

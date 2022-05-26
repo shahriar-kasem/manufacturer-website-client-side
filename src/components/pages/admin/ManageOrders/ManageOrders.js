@@ -9,7 +9,7 @@ const ManageOrders = () => {
 
     const handleUpdateOrder = (id) =>{
         const purchaseStatus = 'Shipped'
-        fetch(`http://localhost:5000/order/update/${id}`, {
+        fetch(`https://gentle-spire-70229.herokuapp.com/order/update/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -23,7 +23,7 @@ const ManageOrders = () => {
         })
     }
     const handleDeleteOrder = (id)=>{
-        fetch(`http://localhost:5000/order/${id}`, {
+        fetch(`https://gentle-spire-70229.herokuapp.com/order/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `${localStorage.getItem('accessTokenST')}`,
@@ -65,7 +65,7 @@ const ManageOrders = () => {
                         <tr>
                             <th>{index +1}</th>
                             <td>{order.customerEmail}</td>
-                            <td>{order.orderId}</td>
+                            <td>{order.transactionId}</td>
                             <td>{order.purchaseStatus}</td>
                             <td>{order.paymentStatus}</td>
                             <td className='text-center'>

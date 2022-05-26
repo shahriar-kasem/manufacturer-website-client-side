@@ -6,7 +6,7 @@ import auth from "../firebase.init";
 
 const useUsers = () => {
     const navigate = useNavigate();
-    const { data: users, isLoading, refetch, error } = useQuery('usersData', () => fetch(`http://localhost:5000/users`, {
+    const { data: users, isLoading, refetch, error } = useQuery('usersData', () => fetch(`https://gentle-spire-70229.herokuapp.com/users`, {
         headers: {
             authorization: `${localStorage.getItem('accessTokenST')}`
         }

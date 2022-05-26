@@ -22,7 +22,7 @@ const AddBlog = () => {
             headers: {
                 'authorization': `${localStorage.getItem('accessTokenST')}`
             },
-            url: `http://localhost:5000/add/blog`,
+            url: `https://gentle-spire-70229.herokuapp.com/add/blog`,
             data: newBlog,
         }).then(res => {
             if (res.status === 200) {

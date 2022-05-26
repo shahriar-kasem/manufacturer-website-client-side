@@ -16,7 +16,7 @@ const CheckoutForm = ({ order }) => {
     const { _id, customerEmail, customerName, productPrice, purchaseQuantity } = order;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/create-payment-intent`, {
+        fetch(`https://gentle-spire-70229.herokuapp.com/create-payment-intent`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -95,7 +95,7 @@ const CheckoutForm = ({ order }) => {
                 paymentStatus: 'paid',
 
             }
-            fetch(`http://localhost:5000/order/payment/${_id}`, {
+            fetch(`https://gentle-spire-70229.herokuapp.com/order/payment/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',

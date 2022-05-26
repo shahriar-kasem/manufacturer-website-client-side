@@ -11,7 +11,7 @@ const Subscribe = () => {
         const email = data.email;
         const subscriberCountry = country;
         const subscriber = { name, email, subscriberCountry };
-        fetch(`http://localhost:5000/subscribe/${email}`, {
+        fetch(`https://gentle-spire-70229.herokuapp.com/subscribe/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
