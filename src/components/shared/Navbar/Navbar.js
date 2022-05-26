@@ -53,6 +53,10 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+                {
+                            user &&
+                            <h6 className='text-blue-500 hidden md:block font-semibold mr-3'><i>{user?.displayName}</i></h6>
+                        }
                     <div className="dropdown dropdown-end">
                         <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
