@@ -67,7 +67,7 @@ const ManageOrders = () => {
                             <td>{order.customerEmail}</td>
                             <td>{order.transactionId}</td>
                             <td>{order.purchaseStatus}</td>
-                            <td>{order.paymentStatus}</td>
+                            <td className='text-center'>{order.paymentStatus}</td>
                             <td className='text-center'>
                                 {
                                     order.purchaseStatus === 'Shipped' ?
@@ -94,9 +94,12 @@ const ManageOrders = () => {
                             <label onClick={() => handleUpdateOrder(confirm?._id)} htmlFor="update-order" className="btn btn-outline btn-error btn-xs">Confirm Order</label>
                         </div>
                        }
-                        <div className="modal-action ml-3">
+                        {
+                            confirm?.paymentStatus !== 'paid' &&
+                            <div className="modal-action ml-3">
                             <label disabled={confirm?.paymentStatus === 'paid'} onClick={() => handleDeleteOrder(confirm?._id)} htmlFor="update-order" className="btn btn-outline btn-error btn-xs">Cancel Order</label>
                         </div>
+                        }
                         <div className="modal-action ml-3">
                             <label htmlFor="update-order" className="btn btn-outline btn-xs">Cancel</label>
                         </div>
