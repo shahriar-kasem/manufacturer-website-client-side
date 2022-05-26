@@ -3,10 +3,15 @@ import useReviews from '../../../hooks/useReviews';
 import Review from '../Review/Review';
 import { useNavigate } from 'react-router-dom';
 import reviewLogo from '../../../images/logo/reviewLogo.png';
+import useAdmin from '../../../hooks/useAdmin';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
 
 const Reviews = () => {
+    const [user] = useAuthState(auth);
     const navigate = useNavigate();
-    const {reviews} = useReviews();
+    const { reviews } = useReviews();
+    const [admin] = useAdmin(user);
 
     return (
         <section className='md:mt-5 lg:w-11/12 md:w-11/12 mx-auto mb-5'>
@@ -33,7 +38,9 @@ const Reviews = () => {
                     }
                 </div>
             </div>
-            <div className="grid flex-grow card rounded-box place-items-center"><button onClick={() => navigate('/dashboard/addReview')} className="btn w-full">Add Review</button></div>
+            {
+                !admin && <div className="grid flex-grow card rounded-box place-items-center"><button onClick={() => navigate('/dashboard/addReview')} className="btn w-full">Add Review</button></div>
+            }
         </section>
     );
 };

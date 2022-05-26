@@ -103,7 +103,7 @@ const Login = () => {
                         <input className='btn btn-outline w-full md:w-10/12 max-w-xs' type="submit" value='Login' />
                     </form>
                     <div>
-                    <p className='text-center'><small>Forgot password? <Link className='text-blue-500' to='/'>Reset password</Link></small></p>
+                    <p className='text-center'><small>Forgot password? <Link className='text-blue-500' to='/resetPass'>Reset password</Link></small></p>
                         <p className='text-center'><small>New to Manufacturer? <Link className='text-blue-500' to='/signup'>Create new account</Link></small></p>
                     </div>
                 </div>

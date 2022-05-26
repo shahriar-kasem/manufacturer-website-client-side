@@ -24,6 +24,7 @@ import RequireAdmin from './components/pages/RequireAdmin/RequireAdmin';
 import AddBlog from './components/pages/admin/AddBlog/AddBlog';
 import Payment from './components/pages/Payment/Payment';
 import MyPortfolio from './components/pages/MyPortfolio/MyPortfolio';
+import ResetPassword from './components/shared/ResetPassword/ResetPassword';
 
 function App() {
   return (
@@ -84,6 +85,7 @@ function App() {
           <Route path='/reviews' element={<Reviews></Reviews>}></Route>
           <Route path='/myPortfolio' element={<MyPortfolio></MyPortfolio>}></Route>
           <Route path='/login' element={<Login></Login>}></Route>
+          <Route path='/resetPass' element={<ResetPassword></ResetPassword>}></Route>
           <Route path='/signup' element={<SignUp></SignUp>}></Route>
           <Route path='*' element={<NotFound></NotFound>}></Route>
         </Routes>
