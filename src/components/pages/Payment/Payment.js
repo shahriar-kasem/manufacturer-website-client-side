@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
@@ -19,8 +19,11 @@ const Payment = () => {
     }).then(res => res.json()
     )
     )
-    const totalPrice = order?.purchaseQuantity * order?.productPrice;
-    // console.log(order)
+    const [totalPrice, setTotalPrice] = useState();
+    useEffect(() => {
+        const calculatePrice = order.purchaseQuantity * order.productPrice;
+        setTotalPrice(calculatePrice)
+    }, [order])
 
     if (isLoading) {
         return <Loading></Loading>
@@ -30,19 +33,24 @@ const Payment = () => {
         <section>
             {
                 order &&
-                <div className='flex justify-center'>
-                    <div class="card w-96 bg-base-100 shadow-xl">
-                        <div class="card-body">
-                            <h6 className='text-lg font-bold text-blue-500'><i>Hello, {order.customerName}</i></h6>
-                            <h4>Please pay for <span className='font-semibold text-info'>{order.productName}</span></h4>
-                            <p className='font-semibold'>Purchase quantity: <span className='text-info'>{order.purchaseQuantity}</span></p>
+                <div className='flex flex-col md:flex-row justify-center'>
+                    <div className="card max-w-md bg-base-100 shadow-xl mr-0 md:mr-3">
+                        <div className="card-body">
+                            <h6 className='text-lg font-bold text-blue-500'><i>Hello, <span>{order.customerName}</span></i></h6>
+                            <h4 className='font-semibold'>Please pay for <span className='font-semibold text-green-600'>{order.productName}</span></h4>
+                            <p className='font-semibold'>Purchase quantity: <span>{order.purchaseQuantity}</span></p>
                             <p className='font-semibold'>Price: ${order.productPrice}</p>
                             <h5 className='font-bold'>Please pay total: <span className='text-red-500'>${totalPrice}</span></h5>
                         </div>
-                    </div><div class="card w-96 bg-base-100 shadow-xl">
-                        <div class="card-body">
+                    </div>
+                    <div className="card max-w-md bg-base-100 shadow-xl">
+                        <div className="card-body">
                             <Elements stripe={stripePromise}>
-                                <CheckoutForm  key={order?._id}  order={order} />
+                                <CheckoutForm
+                                    key={order?._id}
+                                    order={order}
+                                    totalPrice={totalPrice}
+                                />
                             </Elements>
                         </div>
                     </div>

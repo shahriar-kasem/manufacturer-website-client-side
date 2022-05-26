@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CheckoutForm = ({ order }) => {
+const CheckoutForm = ({ order, totalPrice }) => {
    
 
     return (

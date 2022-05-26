@@ -20,11 +20,21 @@ const Home = () => {
     const [homeReview, setHomeReview] = useState();
     useEffect(() => {
         const homeProductLength = products?.length - 6;
-        setHomeProduct(homeProductLength);
+        if (homeProductLength < 0) {
+            setHomeProduct(0)
+        }
+        else {
+            setHomeProduct(homeProductLength);
+        }
     }, [products])
     useEffect(() => {
         const homeReviewLength = reviews?.length - 3;
-        setHomeReview(homeReviewLength);
+        if (homeReviewLength < 0) {
+            setHomeReview(0)
+        }
+        else {
+            setHomeReview(homeReviewLength);
+        }
     }, [reviews])
 
     return (
@@ -43,8 +53,8 @@ const Home = () => {
                         }
                     </div>
                     <div className="flex flex-col lg:flex-row my-3 md:my-5">
-                    <div className="grid flex-grow card rounded-box place-items-end"><button onClick={() => navigate('/tools')} className="btn btn-outline mr-3 md:mr-5 lg:mr-10 btn-success">See all tools <ArrowRightIcon className="h-5 w-5 ml-1"></ArrowRightIcon></button></div>
-                </div>
+                        <div className="grid flex-grow card rounded-box place-items-end"><button onClick={() => navigate('/tools')} className="btn btn-outline mr-3 md:mr-5 lg:mr-10 btn-success">See all tools <ArrowRightIcon className="h-5 w-5 ml-1"></ArrowRightIcon></button></div>
+                    </div>
                 </div>
             </section>
             <BusinessDetails></BusinessDetails>
