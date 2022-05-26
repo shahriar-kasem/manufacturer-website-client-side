@@ -23,6 +23,7 @@ import Purchase from './components/pages/Purchase/Purchase';
 import RequireAdmin from './components/pages/RequireAdmin/RequireAdmin';
 import AddBlog from './components/pages/admin/AddBlog/AddBlog';
 import Payment from './components/pages/Payment/Payment';
+import MyPortfolio from './components/pages/MyPortfolio/MyPortfolio';
 
 function App() {
   return (
@@ -81,6 +82,7 @@ function App() {
           }></Route>
           <Route path='/blog' element={<Blog></Blog>}></Route>
           <Route path='/reviews' element={<Reviews></Reviews>}></Route>
+          <Route path='/myPortfolio' element={<MyPortfolio></MyPortfolio>}></Route>
           <Route path='/login' element={<Login></Login>}></Route>
           <Route path='/signup' element={<SignUp></SignUp>}></Route>
           <Route path='*' element={<NotFound></NotFound>}></Route>

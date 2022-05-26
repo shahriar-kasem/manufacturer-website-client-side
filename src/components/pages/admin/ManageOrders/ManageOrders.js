@@ -1,9 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import useOrders from '../../../../hooks/useOrders';
 import Loading from '../../../shared/Loading/Loading';
 
 const ManageOrders = () => {
-    const { orders, isLoading } = useOrders();
+    const { orders, isLoading, refetch } = useOrders();
+    const [confirm, setConfirm] = useState(null);
+
+    const handleUpdateOrder = (id) =>{
+        const purchaseStatus = 'Shipped'
+        fetch(`http://localhost:5000/order/update/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `${localStorage.getItem('accessTokenST')}`
+            },
+            body: JSON.stringify({purchaseStatus})
+        }).then(res => res.json()).then(data => {
+            toast.success('Order Confirmed Successfully!')
+            setConfirm(null);
+            refetch()
+        })
+    }
+    const handleDeleteOrder = (id)=>{
+        fetch(`http://localhost:5000/order/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `${localStorage.getItem('accessTokenST')}`,
+            }
+        })
+            .then(res => {
+                res.json()
+                if (res.status === 200) {
+                    toast.success('Order Cancelled Successfully!')
+                    setConfirm(null);
+                    refetch();
+                }
+            })
+    }
 
     if(isLoading){
         return <Loading></Loading>
@@ -34,12 +68,40 @@ const ManageOrders = () => {
                             <td>{order.orderId}</td>
                             <td>{order.purchaseStatus}</td>
                             <td>{order.paymentStatus}</td>
-                            <td><button className='btn btn-outline btn-info btn-xs'>Update</button></td>
+                            <td className='text-center'>
+                                {
+                                    order.purchaseStatus === 'Shipped' ?
+                                        <label className="btn btn-outline btn-success btn-xs btn-disabled">Order Confirmed</label>
+                                        :
+                                        <label disabled={order.purchaseStatus === 'Shipped'} onClick={() => setConfirm(order)} htmlFor="update-order" className="btn btn-outline btn-info btn-xs">Update Order</label>
+                                }
+                                </td>
                         </tr>
                     </tbody>
                     )
                   }
                 </table>
+            </div>
+            <input type="checkbox" id="update-order" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box w-full md:w-6/12 max-w-5xl">
+                    <h3 className="font-bold text-lg text-red-500">What you want to do with this order?</h3>
+                    <p></p>
+                    <div className='flex justify-end'>
+                       {
+                           confirm?.paymentStatus === 'paid' &&
+                            <div className="modal-action">
+                            <label onClick={() => handleUpdateOrder(confirm?._id)} htmlFor="update-order" className="btn btn-outline btn-error btn-xs">Confirm Order</label>
+                        </div>
+                       }
+                        <div className="modal-action ml-3">
+                            <label disabled={confirm?.paymentStatus === 'paid'} onClick={() => handleDeleteOrder(confirm?._id)} htmlFor="update-order" className="btn btn-outline btn-error btn-xs">Cancel Order</label>
+                        </div>
+                        <div className="modal-action ml-3">
+                            <label htmlFor="update-order" className="btn btn-outline btn-xs">Cancel</label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     );
