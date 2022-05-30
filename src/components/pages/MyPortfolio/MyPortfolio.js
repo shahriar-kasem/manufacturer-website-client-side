@@ -57,7 +57,7 @@ const MyPortfolio = () => {
                 </div>
             </div>
             <div className='mt-10 ml-2 md:ml-10'>
-                <h3 className='text-2xl text-blue-500 font-bold text-center'><i>Technologies i've learned as a web developer</i> - </h3>
+                <h3 className='text-2xl text-blue-500 font-bold text-start'><i>Technologies i've learned as a web developer</i> - </h3>
                 <ul className='list-disc ml-5 md:ml-10 mt-3 text-lg font-semibold text-rose-600 uppercase grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1'>
                     <li>Expressjs</li>
                     <li>Mongodb</li>
@@ -72,7 +72,7 @@ const MyPortfolio = () => {
                 <p className='my-5 mx-10 text-lg font-semibold text-gray-400'><i>I'm hungry to Learn. This is a short list of technologies i've learned till now. I'm still learning and exploring new technologies. As a web developer i always try to stay updated.</i></p>
             </div>
             <div className='mt-10 ml-2 md:ml-10'>
-                <h2 className='text-2xl text-blue-500 font-bold mb-6 text-center'><i>Some of my project details are below</i> - </h2>
+                <h2 className='text-2xl text-blue-500 font-bold mb-6 text-start'><i>Some of my project details are below</i> - </h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                     <div class="card w-96 glass mt-5">
                         <figure><img className='h-48' src={assignment_9} alt="car!" /></figure>
