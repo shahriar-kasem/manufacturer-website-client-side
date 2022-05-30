@@ -23,15 +23,15 @@ const Blog = () => {
             .then(res => {
                 res.json()
                 if (res.status) {
-                   if(res.status === 200){
-                    toast.success('Product deleted successfully!')
-                    setConfirm(null)
-                    refetch()
-                   }
-                   else{
-                       toast.error('Something went wrong! Please try again later')
-                       navigate('/')
-                   }
+                    if (res.status === 200) {
+                        toast.success('Product deleted successfully!')
+                        setConfirm(null)
+                        refetch()
+                    }
+                    else {
+                        toast.error('Something went wrong! Please try again later')
+                        navigate('/')
+                    }
                 }
             })
     }
@@ -73,6 +73,12 @@ const Blog = () => {
                             <label htmlFor="delete-blog" className="btn btn-outline btn-xs">Cancel</label>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className='mt-10'>
+                <h1 className='text-center text-xl font-bold text-blue-500'><i>Website details demo video</i></h1>
+                <div className='flex justify-center'>
+                    <iframe className='my-5' width="560" height="315" src="https://www.youtube-nocookie.com/embed/-3jIjbluvTU?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
