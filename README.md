@@ -3,10 +3,10 @@
 ## [Live site link](https://manufacturer-website-ea312.web.app/)
 Click here: https://manufacturer-website-ea312.web.app/
 
-## [Private repo link client-side](https://github.com/shahriar-kasem/manufacturer-website-client-side)
+## [Repo link client-side](https://github.com/shahriar-kasem/manufacturer-website-client-side)
 Click here: https://github.com/shahriar-kasem/manufacturer-website-client-side
 
-## [Private repo link server-side](https://github.com/shahriar-kasem/manufacturer-website-server-side)
+## [Repo link server-side](https://github.com/shahriar-kasem/manufacturer-website-server-side)
 Click here: https://github.com/shahriar-kasem/manufacturer-website-server-side
 
 ### Notes:
